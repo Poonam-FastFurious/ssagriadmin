@@ -1,0 +1,7 @@
+.custom-modal-dialog {
+  max-width: 650px; /* Maximum width of the modal */
+}
+
+.custom-modal-content {
+  width: 100%; /* Full width content */
+}
