@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Review() {
   return (
     <>
@@ -52,7 +54,7 @@ function Review() {
                         <td>VLZ-452</td>
                         <td>VLZ1400087402</td>
                         <td>
-                          <a href="#!">Post launch reminder/ post list</a>
+                          <Link to="#!">Post launch reminder/ post list</Link>
                         </td>
 
                         <td>
@@ -73,22 +75,22 @@ function Review() {
                             </button>
                             <ul className="dropdown-menu dropdown-menu-end">
                               <li>
-                                <a href="#!" className="dropdown-item">
+                                <Link to="#!" className="dropdown-item">
                                   <i className="ri-eye-fill align-bottom me-2 text-muted"></i>{" "}
                                   View
-                                </a>
+                                </Link>
                               </li>
                               <li>
-                                <a className="dropdown-item edit-item-btn">
+                                <Link className="dropdown-item edit-item-btn">
                                   <i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{" "}
                                   Edit
-                                </a>
+                                </Link>
                               </li>
                               <li>
-                                <a className="dropdown-item remove-item-btn">
+                                <Link className="dropdown-item remove-item-btn">
                                   <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i>{" "}
                                   Delete
-                                </a>
+                                </Link>
                               </li>
                             </ul>
                           </div>

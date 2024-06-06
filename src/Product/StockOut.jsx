@@ -14,7 +14,7 @@ function StockOut() {
                   <div className="page-title-right">
                     <ol className="breadcrumb m-0">
                       <li className="breadcrumb-item">
-                        <Link to="#">Ecommerce</Link>
+                        <Link to="#">SSAgriculture</Link>
                       </li>
                       <li className="breadcrumb-item active">
                         StockOut Product
@@ -76,11 +76,11 @@ function StockOut() {
                         </div>
                       </td>
                       <td>
-                        <a href="#" className="fw-semibold">
+                        <Link to="#" className="fw-semibold">
                           Half Sleeve Round Neck T-Shirts
                           <br />
                           Category : Fashion
-                        </a>
+                        </Link>
                       </td>
                       <td>50</td>
                       <td> $215.00</td>
@@ -93,18 +93,12 @@ function StockOut() {
                       </td>
                       <td>
                         <div className="hstack gap-3 flex-wrap">
-                          <a
-                            href="javascript:void(0);"
-                            className="link-success fs-15"
-                          >
+                          <Link to="#" className="link-success fs-15">
                             <i className="ri-edit-2-line"></i>
-                          </a>
-                          <a
-                            href="javascript:void(0);"
-                            className="link-danger fs-15"
-                          >
+                          </Link>
+                          <Link to="#" className="link-danger fs-15">
                             <i className="ri-delete-bin-line"></i>
-                          </a>
+                          </Link>
                         </div>
                       </td>
                     </tr>
@@ -124,11 +118,11 @@ function StockOut() {
                         </div>
                       </td>
                       <td>
-                        <a href="#" className="fw-semibold">
+                        <Link to="#" className="fw-semibold">
                           Half Sleeve Round Neck T-Shirts
                           <br />
                           Category : Fashion
-                        </a>
+                        </Link>
                       </td>
                       <td>50</td>
                       <td> $215.00</td>
@@ -141,18 +135,12 @@ function StockOut() {
                       </td>
                       <td>
                         <div className="hstack gap-3 flex-wrap">
-                          <a
-                            href="javascript:void(0);"
-                            className="link-success fs-15"
-                          >
+                          <Link to="#" className="link-success fs-15">
                             <i className="ri-edit-2-line"></i>
-                          </a>
-                          <a
-                            href="javascript:void(0);"
-                            className="link-danger fs-15"
-                          >
+                          </Link>
+                          <Link to="#" className="link-danger fs-15">
                             <i className="ri-delete-bin-line"></i>
-                          </a>
+                          </Link>
                         </div>
                       </td>
                     </tr>{" "}
@@ -172,11 +160,11 @@ function StockOut() {
                         </div>
                       </td>
                       <td>
-                        <a href="#" className="fw-semibold">
+                        <Link to="#" className="fw-semibold">
                           Half Sleeve Round Neck T-Shirts
                           <br />
                           Category : Fashion
-                        </a>
+                        </Link>
                       </td>
                       <td>50</td>
                       <td> $215.00</td>
@@ -189,18 +177,12 @@ function StockOut() {
                       </td>
                       <td>
                         <div className="hstack gap-3 flex-wrap">
-                          <a
-                            href="javascript:void(0);"
-                            className="link-success fs-15"
-                          >
+                          <Link to="#" className="link-success fs-15">
                             <i className="ri-edit-2-line"></i>
-                          </a>
-                          <a
-                            href="javascript:void(0);"
-                            className="link-danger fs-15"
-                          >
+                          </Link>
+                          <Link to="#" className="link-danger fs-15">
                             <i className="ri-delete-bin-line"></i>
-                          </a>
+                          </Link>
                         </div>
                       </td>
                     </tr>
@@ -220,11 +202,11 @@ function StockOut() {
                         </div>
                       </td>
                       <td>
-                        <a href="#" className="fw-semibold">
+                        <Link to="#" className="fw-semibold">
                           Half Sleeve Round Neck T-Shirts
                           <br />
                           Category : Fashion
-                        </a>
+                        </Link>
                       </td>
                       <td>50</td>
                       <td> $215.00</td>
@@ -237,18 +219,12 @@ function StockOut() {
                       </td>
                       <td>
                         <div className="hstack gap-3 flex-wrap">
-                          <a
-                            href="javascript:void(0);"
-                            className="link-success fs-15"
-                          >
+                          <Link to="#" className="link-success fs-15">
                             <i className="ri-edit-2-line"></i>
-                          </a>
-                          <a
-                            href="javascript:void(0);"
-                            className="link-danger fs-15"
-                          >
+                          </Link>
+                          <Link to="#" className="link-danger fs-15">
                             <i className="ri-delete-bin-line"></i>
-                          </a>
+                          </Link>
                         </div>
                       </td>
                     </tr>

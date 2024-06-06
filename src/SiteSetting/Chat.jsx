@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Chat() {
   return (
     <>
@@ -42,24 +44,24 @@ function Chat() {
                   role="tablist"
                 >
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link active"
                       data-bs-toggle="tab"
-                      href="#chats"
+                      to="#chats"
                       role="tab"
                     >
                       Chats
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a
+                    <Link
                       className="nav-link"
                       data-bs-toggle="tab"
-                      href="#contacts"
+                      to="#contacts"
                       role="tab"
                     >
                       Contacts
-                    </a>
+                    </Link>
                   </li>
                 </ul>
 
@@ -145,12 +147,12 @@ function Chat() {
                             <div className="col-sm-4 col-8">
                               <div className="d-flex align-items-center">
                                 <div className="flex-shrink-0 d-block d-lg-none me-3">
-                                  <a
-                                    href="javascript: void(0);"
+                                  <Link
+                                    to="#"
                                     className="user-chat-remove fs-18 p-1"
                                   >
                                     <i className="ri-arrow-left-s-line align-bottom"></i>
-                                  </a>
+                                  </Link>
                                 </div>
                                 <div className="flex-grow-1 overflow-hidden">
                                   <div className="d-flex align-items-center">
@@ -164,14 +166,14 @@ function Chat() {
                                     </div>
                                     <div className="flex-grow-1 overflow-hidden">
                                       <h5 className="text-truncate mb-0 fs-16">
-                                        <a
+                                        <Link
                                           className="text-reset username"
                                           data-bs-toggle="offcanvas"
-                                          href="#userProfileCanvasExample"
+                                          to="#userProfileCanvasExample"
                                           aria-controls="userProfileCanvasExample"
                                         >
                                           Lisa Parker
-                                        </a>
+                                        </Link>
                                       </h5>
                                       <p className="text-truncate text-muted fs-14 mb-0 userStatus">
                                         <small>Online</small>
@@ -244,25 +246,25 @@ function Chat() {
                                       ></i>
                                     </button>
                                     <div className="dropdown-menu dropdown-menu-end">
-                                      <a
+                                      <Link
                                         className="dropdown-item d-block d-lg-none user-profile-show"
-                                        href="#"
+                                        to="#"
                                       >
                                         <i className="ri-user-2-fill align-bottom text-muted me-2"></i>{" "}
                                         View Profile
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-inbox-archive-line align-bottom text-muted me-2"></i>{" "}
                                         Archive
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-mic-off-line align-bottom text-muted me-2"></i>{" "}
                                         Muted
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-delete-bin-5-line align-bottom text-muted me-2"></i>{" "}
                                         Delete
-                                      </a>
+                                      </Link>
                                     </div>
                                   </div>
                                 </li>
@@ -306,12 +308,12 @@ function Chat() {
                             <div className="col-sm-4 col-8">
                               <div className="d-flex align-items-center">
                                 <div className="flex-shrink-0 d-block d-lg-none me-3">
-                                  <a
-                                    href="javascript: void(0);"
+                                  <Link
+                                    to="#"
                                     className="user-chat-remove fs-18 p-1"
                                   >
                                     <i className="ri-arrow-left-s-line align-bottom"></i>
-                                  </a>
+                                  </Link>
                                 </div>
                                 <div className="flex-grow-1 overflow-hidden">
                                   <div className="d-flex align-items-center">
@@ -324,14 +326,14 @@ function Chat() {
                                     </div>
                                     <div className="flex-grow-1 overflow-hidden">
                                       <h5 className="text-truncate mb-0 fs-16">
-                                        <a
+                                        <Link
                                           className="text-reset username"
                                           data-bs-toggle="offcanvas"
-                                          href="#userProfileCanvasExample"
+                                          to="#userProfileCanvasExample"
                                           aria-controls="userProfileCanvasExample"
                                         >
                                           Lisa Parker
-                                        </a>
+                                        </Link>
                                       </h5>
                                       <p className="text-truncate text-muted fs-14 mb-0 userStatus">
                                         <small>24 Members</small>
@@ -404,25 +406,25 @@ function Chat() {
                                       ></i>
                                     </button>
                                     <div className="dropdown-menu dropdown-menu-end">
-                                      <a
+                                      <Link
                                         className="dropdown-item d-block d-lg-none user-profile-show"
-                                        href="#"
+                                        to="#"
                                       >
                                         <i className="ri-user-2-fill align-bottom text-muted me-2"></i>{" "}
                                         View Profile
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-inbox-archive-line align-bottom text-muted me-2"></i>{" "}
                                         Archive
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-mic-off-line align-bottom text-muted me-2"></i>{" "}
                                         Muted
-                                      </a>
-                                      <a className="dropdown-item" href="#">
+                                      </Link>
+                                      <Link className="dropdown-item" to="#">
                                         <i className="ri-delete-bin-5-line align-bottom text-muted me-2"></i>{" "}
                                         Delete
-                                      </a>
+                                      </Link>
                                     </div>
                                   </div>
                                 </li>

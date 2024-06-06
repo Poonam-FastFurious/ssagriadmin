@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 /* eslint-disable react/no-unescaped-entities */
 function Profile() {
@@ -112,10 +113,10 @@ function Profile() {
                         className="flex-shrink-0"
                         onClick={toggleEditable}
                       >
-                        <a className="badge bg-light text-primary fs-12">
+                        <Link className="badge bg-light text-primary fs-12">
                           <i className="ri-edit-box-line align-bottom me-1"></i>
                           Edit
-                        </a>
+                        </Link>
                       </button>
                     </div>
                     <div className="progress animated-progress custom-progress progress-label">
@@ -139,12 +140,12 @@ function Profile() {
                         <h5 className="card-title mb-0">Portfolio</h5>
                       </div>
                       <div className="flex-shrink-0">
-                        <a
-                          href=""
+                        <Link
+                          to="#"
                           className="badge bg-light text-primary fs-12"
                         >
                           <i className="ri-add-fill align-bottom me-1"></i> Add
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className="mb-3 d-flex">
@@ -212,24 +213,24 @@ function Profile() {
                       role="tablist"
                     >
                       <li className="nav-item">
-                        <a
+                        <Link
                           className="nav-link active"
                           data-bs-toggle="tab"
-                          href="#personalDetails"
+                          to="#personalDetails"
                           role="tab"
                         >
                           <i className="fas fa-home"></i> Personal Details
-                        </a>
+                        </Link>
                       </li>
                       <li className="nav-item">
-                        <a
+                        <Link
                           className="nav-link"
                           data-bs-toggle="tab"
-                          href="#changePassword"
+                          to="#changePassword"
                           role="tab"
                         >
                           <i className="far fa-user"></i> Change Password
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -540,12 +541,12 @@ function Profile() {
 
                             <div className="col-lg-12">
                               <div className="mb-3">
-                                <a
-                                  href=""
+                                <Link
+                                  to="#"
                                   className="link-primary text-decoration-underline"
                                 >
                                   Forgot Password ?
-                                </a>
+                                </Link>
                               </div>
                             </div>
 
@@ -563,9 +564,9 @@ function Profile() {
                         </form>
                         <div className="mt-4 mb-3 border-bottom pb-2">
                           <div className="float-end">
-                            <a href="" className="link-primary">
+                            <Link to="#" className="link-primary">
                               All Logout
-                            </a>
+                            </Link>
                           </div>
                           <h5 className="card-title">Login History</h5>
                         </div>
@@ -582,7 +583,7 @@ function Profile() {
                             </p>
                           </div>
                           <div>
-                            <a href="">Logout</a>
+                            <Link to="#">Logout</Link>
                           </div>
                         </div>
                         <div className="d-flex align-items-center mb-3">
@@ -598,7 +599,7 @@ function Profile() {
                             </p>
                           </div>
                           <div>
-                            <a href="">Logout</a>
+                            <Link to="#">Logout</Link>
                           </div>
                         </div>
                         <div className="d-flex align-items-center mb-3">
@@ -614,7 +615,7 @@ function Profile() {
                             </p>
                           </div>
                           <div>
-                            <a href="">Logout</a>
+                            <Link to="#">Logout</Link>
                           </div>
                         </div>
                         <div className="d-flex align-items-center">
@@ -630,7 +631,7 @@ function Profile() {
                             </p>
                           </div>
                           <div>
-                            <a href="">Logout</a>
+                            <Link to="#">Logout</Link>
                           </div>
                         </div>
                       </div>

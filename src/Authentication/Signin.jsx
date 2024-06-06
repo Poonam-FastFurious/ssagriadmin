@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -67,13 +67,13 @@ function Signin() {
                         <div className="bg-overlay"></div>
                         <div className="position-relative h-100 d-flex flex-column">
                           <div className="mb-4">
-                            <a href="index.html" className="d-block">
+                            <Link to="/" className="d-block">
                               <img
                                 src="https://themesbrand.com/velzon/html/default/assets/images/logo-light.png"
                                 alt=""
                                 height="18"
                               />
-                            </a>
+                            </Link>
                           </div>
                           <div className="mt-auto">
                             <div className="mb-3">
@@ -159,12 +159,9 @@ function Signin() {
 
                             <div className="mb-3">
                               <div className="float-end">
-                                <a
-                                  href="auth-pass-reset-cover.html"
-                                  className="text-muted"
-                                >
+                                <Link to="#" className="text-muted">
                                   Forgot password?
-                                </a>
+                                </Link>
                               </div>
                               <label
                                 className="form-label"
@@ -262,12 +259,12 @@ function Signin() {
                         <div className="mt-5 text-center">
                           <p className="mb-0">
                             Don't have an account ?
-                            <a
-                              href="auth-signup-cover.html"
+                            <Link
+                              to="#"
                               className="fw-semibold text-primary text-decoration-underline"
                             >
                               Signup
-                            </a>
+                            </Link>
                           </p>
                         </div>
                       </div>

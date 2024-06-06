@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
@@ -36,7 +36,7 @@ function ProductDetail() {
                   <div className="page-title-right">
                     <ol className="breadcrumb m-0">
                       <li className="breadcrumb-item">
-                        <a href="#">SS agriculture</a>
+                        <Link to="#">SS agriculture</Link>
                       </li>
                       <li className="breadcrumb-item active">
                         Product Details
@@ -98,9 +98,9 @@ function ProductDetail() {
                               <h4>{products.productTitle}</h4>
                               <div className="hstack gap-3 flex-wrap">
                                 <div>
-                                  <a href="#" className="text-primary d-block">
+                                  <Link to="#" className="text-primary d-block">
                                     {products.category}
-                                  </a>
+                                  </Link>
                                 </div>
                                 <div className="vr"></div>
 
@@ -109,15 +109,15 @@ function ProductDetail() {
                             </div>
                             <div className="flex-shrink-0">
                               <div>
-                                <a
-                                  href="apps-ecommerce-add-product.html"
+                                <Link
+                                  to="#"
                                   className="btn btn-light"
                                   data-bs-toggle="tooltip"
                                   data-bs-placement="top"
                                   title="Edit"
                                 >
                                   <i className="ri-pencil-fill align-bottom"></i>
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -270,30 +270,30 @@ function ProductDetail() {
                                 role="tablist"
                               >
                                 <li className="nav-item">
-                                  <a
+                                  <Link
                                     className="nav-link active"
                                     id="nav-speci-tab"
                                     data-bs-toggle="tab"
-                                    href="#nav-speci"
+                                    to="#nav-speci"
                                     role="tab"
                                     aria-controls="nav-speci"
                                     aria-selected="true"
                                   >
                                     Specification
-                                  </a>
+                                  </Link>
                                 </li>
                                 <li className="nav-item">
-                                  <a
+                                  <Link
                                     className="nav-link"
                                     id="nav-detail-tab"
                                     data-bs-toggle="tab"
-                                    href="#nav-detail"
+                                    to="#nav-detail"
                                     role="tab"
                                     aria-controls="nav-detail"
                                     aria-selected="false"
                                   >
                                     Details
-                                  </a>
+                                  </Link>
                                 </li>
                               </ul>
                             </nav>
@@ -596,27 +596,27 @@ function ProductDetail() {
                                           </div>
 
                                           <div className="d-flex flex-grow-1 gap-2 mb-3">
-                                            <a href="#" className="d-block">
+                                            <Link to="#" className="d-block">
                                               <img
                                                 src="https://themesbrand.com/velzon/html/master/assets/images/small/img-12.jpg"
                                                 alt=""
                                                 className="avatar-sm rounded object-fit-cover"
                                               />
-                                            </a>
-                                            <a href="#" className="d-block">
+                                            </Link>
+                                            <Link to="#" className="d-block">
                                               <img
                                                 src="https://themesbrand.com/velzon/html/master/assets/images/small/img-11.jpg"
                                                 alt=""
                                                 className="avatar-sm rounded object-fit-cover"
                                               />
-                                            </a>
-                                            <a href="#" className="d-block">
+                                            </Link>
+                                            <Link to="#" className="d-block">
                                               <img
                                                 src="https://themesbrand.com/velzon/html/master/assets/images/small/img-10.jpg"
                                                 alt=""
                                                 className="avatar-sm rounded object-fit-cover"
                                               />
-                                            </a>
+                                            </Link>
                                           </div>
 
                                           <div className="d-flex align-items-end">

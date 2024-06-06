@@ -370,13 +370,12 @@ function Order() {
                                       {order.customer}
                                     </td>
                                     <td className="product_name">
-                                      Puma Tshirt
+                                      {order.products.length}
                                     </td>
                                     <td className="date">
-                                      20 Dec, 2021,
-                                      <small className="text-muted">
-                                        02:21 AM
-                                      </small>
+                                      {new Date(
+                                        order.createdAt
+                                      ).toLocaleDateString()}
                                     </td>
                                     <td className="amount">
                                       {order.totalAmount}
@@ -523,13 +522,12 @@ function Order() {
                                       {order.customer}
                                     </td>
                                     <td className="product_name">
-                                      Puma Tshirt
+                                      {order.products.length}
                                     </td>
                                     <td className="date">
-                                      20 Dec, 2021,
-                                      <small className="text-muted">
-                                        02:21 AM
-                                      </small>
+                                      {new Date(
+                                        order.createdAt
+                                      ).toLocaleDateString()}
                                     </td>
                                     <td className="amount">
                                       {order.totalAmount}
@@ -677,13 +675,12 @@ function Order() {
                                       {order.customer}
                                     </td>
                                     <td className="product_name">
-                                      Puma Tshirt
+                                      {order.products.length}
                                     </td>
                                     <td className="date">
-                                      20 Dec, 2021,
-                                      <small className="text-muted">
-                                        02:21 AM
-                                      </small>
+                                      {new Date(
+                                        order.createdAt
+                                      ).toLocaleDateString()}
                                     </td>
                                     <td className="amount">
                                       {order.totalAmount}
@@ -831,13 +828,12 @@ function Order() {
                                       {order.customer}
                                     </td>
                                     <td className="product_name">
-                                      Puma Tshirt
+                                      {order.products.length}
                                     </td>
                                     <td className="date">
-                                      20 Dec, 2021,
-                                      <small className="text-muted">
-                                        02:21 AM
-                                      </small>
+                                      {new Date(
+                                        order.createdAt
+                                      ).toLocaleDateString()}
                                     </td>
                                     <td className="amount">
                                       {order.totalAmount}

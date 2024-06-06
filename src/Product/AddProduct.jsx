@@ -15,7 +15,7 @@ function AddProduct() {
   const [description, setDescription] = useState("");
   const [oneTimePrice, setOneTimePrice] = useState("");
   const [subscriptionPrice, setSubscriptionPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryName, setCategoryName] = useState("");
   const [productShortDescription, setProductShortDescription] = useState("");
   const [discountPercentage, setDiscountPercentage] = useState("");
   const [rating, setRating] = useState("");
@@ -42,7 +42,8 @@ function AddProduct() {
     formData.append("description", description);
     formData.append("oneTimePrice", oneTimePrice);
     formData.append("subscriptionPrice", subscriptionPrice);
-    formData.append("categoryId", categoryId);
+    formData.append("categoryName", categoryName);
+
     formData.append("productShortDescription", productShortDescription);
     formData.append("discountPercentage", discountPercentage);
     formData.append("rating", rating);
@@ -99,6 +100,8 @@ function AddProduct() {
   };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  console.log(data);
   return (
     <>
       <div className="main-content">
@@ -112,7 +115,7 @@ function AddProduct() {
                   <div className="page-title-right">
                     <ol className="breadcrumb m-0">
                       <li className="breadcrumb-item">
-                        <Link to="#">Ecommerce</Link>
+                        <Link to="#">SSAgriculture</Link>
                       </li>
                       <li className="breadcrumb-item active">Create Product</li>
                     </ol>
@@ -537,15 +540,7 @@ function AddProduct() {
                       <h5 className="card-title mb-0">Product Categories</h5>
                     </div>
                     <div className="card-body">
-                      <p className="text-muted mb-2">
-                        <Link
-                          to="#"
-                          className="float-end text-decoration-underline"
-                        >
-                          Add New
-                        </Link>
-                        Select product category
-                      </p>
+                      <p className="text-muted mb-2">Select product category</p>
 
                       <select
                         className="form-select"
@@ -553,12 +548,12 @@ function AddProduct() {
                         name="choices-category-input"
                         data-choices=""
                         data-choices-search-false=""
-                        onChange={(e) => setCategoryId(e.target.value)}
-                        value={categoryId}
+                        onChange={(e) => setCategoryName(e.target.value)}
+                        value={categoryName}
                       >
                         {data.data.map((cat, index) => (
-                          <option key={index} value={cat._id}>
-                            {cat._id}
+                          <option key={index} value={cat.title}>
+                            {cat.title}
                           </option>
                         ))}
                       </select>

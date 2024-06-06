@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { Link } from "react-router-dom";
 import useFetch from "../Customhooks/useFetch";
 
 function Customerlist() {
@@ -20,7 +21,7 @@ function Customerlist() {
                   <div className="page-title-right">
                     <ol className="breadcrumb m-0">
                       <li className="breadcrumb-item">
-                        <a href="javascript: void(0);">Ecommerce</a>
+                        <Link to="#">SS agriculture</Link>
                       </li>
                       <li className="breadcrumb-item active">Customers</li>
                     </ol>
@@ -184,14 +185,7 @@ function Customerlist() {
                                     />
                                   </div>
                                 </th>
-                                <td className="id" style={{ display: "none" }}>
-                                  <a
-                                    href="javascript:void(0);"
-                                    className="fw-medium link-primary"
-                                  >
-                                    #VZ2101
-                                  </a>
-                                </td>
+
                                 <td className="customer_name">
                                   {user.fullName}
                                 </td>
@@ -212,13 +206,13 @@ function Customerlist() {
                                       data-bs-placement="top"
                                       title="Edit"
                                     >
-                                      <a
-                                        href="#showModal"
+                                      <Link
+                                        to="#showModal"
                                         data-bs-toggle="modal"
                                         className="text-primary d-inline-block edit-item-btn"
                                       >
                                         <i className="ri-pencil-fill fs-16"></i>
-                                      </a>
+                                      </Link>
                                     </li>
                                     <li
                                       className="list-inline-item"
@@ -227,13 +221,13 @@ function Customerlist() {
                                       data-bs-placement="top"
                                       title="Remove"
                                     >
-                                      <a
+                                      <Link
                                         className="text-danger d-inline-block remove-item-btn"
                                         data-bs-toggle="modal"
-                                        href="#deleteRecordModal"
+                                        to="#deleteRecordModal"
                                       >
                                         <i className="ri-delete-bin-5-fill fs-16"></i>
-                                      </a>
+                                      </Link>
                                     </li>
                                   </ul>
                                 </td>
@@ -259,16 +253,16 @@ function Customerlist() {
                       </div>
                       <div className="d-flex justify-content-end">
                         <div className="pagination-wrap hstack gap-2">
-                          <a
+                          <Link
                             className="page-item pagination-prev disabled"
-                            href="#"
+                            to="#"
                           >
                             Previous
-                          </a>
+                          </Link>
                           <ul className="pagination listjs-pagination mb-0"></ul>
-                          <a className="page-item pagination-next" href="#">
+                          <Link className="page-item pagination-next" to="#">
                             Next
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
