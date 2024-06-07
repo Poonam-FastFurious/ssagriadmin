@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/no-unescaped-entities */
 function Profile() {
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [editable, setEditable] = useState(false);
   const adminId = localStorage.getItem("AdminId");
   const token = localStorage.getItem("token");
@@ -30,11 +35,54 @@ function Profile() {
   };
   useEffect(() => {
     fetchAdminProfile();
-  });
+  }, []);
 
   // Function to toggle the editable state
   const toggleEditable = () => {
     setEditable(!editable);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate inputs
+    if (newPassword !== confirmPassword) {
+      setError("New password and confirm password do not match");
+      return;
+    }
+
+    // Reset error and success messages
+    setError("");
+    setSuccess("");
+
+    // API request to change password
+    fetch("/api/v1/admin/change-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to change password");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setSuccess("Password changed successfully");
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      })
+      .catch((error) => {
+        console.error("Error changing password:", error);
+        setError("Error changing password. Please try again.");
+      });
   };
   return (
     <>
@@ -486,7 +534,7 @@ function Profile() {
                         id="changePassword"
                         role="tabpanel"
                       >
-                        <form>
+                        <form onSubmit={handleSubmit}>
                           <div className="row g-2">
                             <div className="col-lg-4">
                               <div>
@@ -501,6 +549,11 @@ function Profile() {
                                   className="form-control"
                                   id="oldpasswordInput"
                                   placeholder="Enter current password"
+                                  value={oldPassword}
+                                  onChange={(e) =>
+                                    setOldPassword(e.target.value)
+                                  }
+                                  required
                                 />
                               </div>
                             </div>
@@ -518,6 +571,11 @@ function Profile() {
                                   className="form-control"
                                   id="newpasswordInput"
                                   placeholder="Enter new password"
+                                  value={newPassword}
+                                  onChange={(e) =>
+                                    setNewPassword(e.target.value)
+                                  }
+                                  required
                                 />
                               </div>
                             </div>
@@ -535,6 +593,11 @@ function Profile() {
                                   className="form-control"
                                   id="confirmpasswordInput"
                                   placeholder="Confirm password"
+                                  value={confirmPassword}
+                                  onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                  }
+                                  required
                                 />
                               </div>
                             </div>
@@ -560,6 +623,28 @@ function Profile() {
                                 </button>
                               </div>
                             </div>
+
+                            {error && (
+                              <div className="col-lg-12">
+                                <div
+                                  className="alert alert-danger"
+                                  role="alert"
+                                >
+                                  {error}
+                                </div>
+                              </div>
+                            )}
+
+                            {success && (
+                              <div className="col-lg-12">
+                                <div
+                                  className="alert alert-success"
+                                  role="alert"
+                                >
+                                  {success}
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </form>
                         <div className="mt-4 mb-3 border-bottom pb-2">

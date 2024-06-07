@@ -50,7 +50,7 @@ function DashBoard() {
                     <div className="col-12">
                       <div className="d-flex align-items-lg-center flex-lg-row flex-column">
                         <div className="flex-grow-1">
-                          <h4 className="fs-16 mb-1">Good Morning, Anna!</h4>
+                          <h4 className="fs-16 mb-1">Good Morning, Admin!</h4>
                           <p className="text-muted mb-0">
                             Here's what's happening with your store today.
                           </p>
@@ -129,7 +129,7 @@ function DashBoard() {
                                 k
                               </h4>
                               <Link
-                                to="/"
+                                to="#"
                                 className="text-decoration-underline"
                               >
                                 View net earnings
@@ -245,7 +245,6 @@ function DashBoard() {
                           <div className="d-flex align-items-center">
                             <div className="flex-grow-1 overflow-hidden">
                               <p className="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                {" "}
                                 My Balance
                               </p>
                             </div>
@@ -269,7 +268,7 @@ function DashBoard() {
                                 to="/"
                                 className="text-decoration-underline"
                               >
-                                Withdraw money
+                                view
                               </Link>
                             </div>
                             <div className="avatar-sm flex-shrink-0">
@@ -777,44 +776,7 @@ function DashBoard() {
                             </table>
                           </div>
 
-                          <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-                            <div className="col-sm">
-                              <div className="text-muted">
-                                Showing <span className="fw-semibold">5</span>{" "}
-                                of <span className="fw-semibold">25</span>{" "}
-                                Results
-                              </div>
-                            </div>
-                            <div className="col-sm-auto  mt-3 mt-sm-0">
-                              <ul className="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                                <li className="page-item disabled">
-                                  <Link to="/#" className="page-link">
-                                    ←
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    1
-                                  </Link>
-                                </li>
-                                <li className="page-item active">
-                                  <Link to="/#" className="page-link">
-                                    2
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    3
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    →
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
+                          <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start"></div>
                         </div>
                       </div>
                     </div>
@@ -1078,44 +1040,7 @@ function DashBoard() {
                             </table>
                           </div>
 
-                          <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-                            <div className="col-sm">
-                              <div className="text-muted">
-                                Showing <span className="fw-semibold">5</span>{" "}
-                                of <span className="fw-semibold">25</span>{" "}
-                                Results
-                              </div>
-                            </div>
-                            <div className="col-sm-auto  mt-3 mt-sm-0">
-                              <ul className="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                                <li className="page-item disabled">
-                                  <Link to="/#" className="page-link">
-                                    ←
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    1
-                                  </Link>
-                                </li>
-                                <li className="page-item active">
-                                  <Link to="/#" className="page-link">
-                                    2
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    3
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="/#" className="page-link">
-                                    →
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
+                          <div className="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start"></div>
                         </div>
                       </div>
                     </div>

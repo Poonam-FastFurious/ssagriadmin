@@ -22,7 +22,7 @@ function Signin() {
         throw new Error("Login failed");
       }
       const data = await response.json();
-      console.log(data);
+
       toast.success("🦄Login Successfull", {
         position: "top-right",
         autoClose: 2000,
