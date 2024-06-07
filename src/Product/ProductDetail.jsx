@@ -147,7 +147,7 @@ function ProductDetail() {
                                   <div className="flex-grow-1">
                                     <p className="text-muted mb-1">Price :</p>
                                     <h5 className="mb-0">
-                                      {products.oneTimePrice}
+                                      Rs{products.oneTimePrice}
                                     </h5>
                                   </div>
                                 </div>
