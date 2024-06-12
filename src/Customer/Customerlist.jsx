@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import useFetch from "../Customhooks/useFetch";
 
 function Customerlist() {
-  const endpoint = "/api/v1/user/alluser";
+  const endpoint =
+    "https://ssagriculturebackend.onrender.com/api/v1/user/alluser";
   const { data, loading, error } = useFetch(endpoint);
 
   if (loading) return <p>Loading...</p>;

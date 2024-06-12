@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 function SubCategories() {
   return (
     <>
-      {" "}
       <div className="main-content">
         <div className="page-content">
           <div className="col-xl-12 col-lg-8">

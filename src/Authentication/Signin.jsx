@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
+import { FaWhatsappSquare } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import logo from "../assets/images/logonew.png";
 import "react-toastify/dist/ReactToastify.css";
 function Signin() {
   const [username, setUsername] = useState("");
@@ -11,13 +12,16 @@ function Signin() {
   const handelsubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/v1/admin/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/admin/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Login failed");
       }
@@ -68,11 +72,7 @@ function Signin() {
                         <div className="position-relative h-100 d-flex flex-column">
                           <div className="mb-4">
                             <Link to="/" className="d-block">
-                              <img
-                                src="https://themesbrand.com/velzon/html/default/assets/images/logo-light.png"
-                                alt=""
-                                height="18"
-                              />
+                              <img src={logo} alt="" height="50" />
                             </Link>
                           </div>
                           <div className="mt-auto">
@@ -215,7 +215,7 @@ function Signin() {
                             <div className="mt-4 text-center">
                               <div className="signin-other-title">
                                 <h5 className="fs-13 mb-4 title">
-                                  Sign In with
+                                  Admin Login dashboard
                                 </h5>
                               </div>
 
@@ -235,9 +235,9 @@ function Signin() {
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-danger btn-icon waves-effect waves-light"
+                                  className="btn btn-danger btn-icon waves-effect waves-light text-xl"
                                 >
-                                  <i className="ri-google-fill fs-16"></i>
+                                  <FaWhatsappSquare />
                                 </button>
                                 <button
                                   type="button"
@@ -258,13 +258,10 @@ function Signin() {
 
                         <div className="mt-5 text-center">
                           <p className="mb-0">
-                            Don't have an account ?
                             <Link
                               to="#"
                               className="fw-semibold text-primary text-decoration-underline"
-                            >
-                              Signup
-                            </Link>
+                            ></Link>
                           </p>
                         </div>
                       </div>

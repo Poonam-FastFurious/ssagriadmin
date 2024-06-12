@@ -8,7 +8,9 @@ function OrderDetails() {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await fetch(`/api/v1/order/singleorder/${id}`);
+        const response = await fetch(
+          `https://ssagriculturebackend.onrender.com/api/v1/order/singleorder/${id}`
+        );
         const data = await response.json();
         setOrder(data.data);
         setLoading(false);

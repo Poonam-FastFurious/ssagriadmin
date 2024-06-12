@@ -14,7 +14,9 @@ function DashBoard() {
         setFetching(true);
 
         //order fetch
-        const response = await fetch("/api/v1/order/allorder");
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/order/allorder"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -22,7 +24,9 @@ function DashBoard() {
         setOrders(data.data);
 
         //userfetch
-        const responseuser = await fetch("/api/v1/user/alluser");
+        const responseuser = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/user/alluser"
+        );
         if (!responseuser.ok) {
           throw new Error(`HTTP error! status: ${responseuser.status}`);
         }

@@ -16,7 +16,9 @@ function Shipping() {
   const fetchdeliverycharg = async () => {
     try {
       setFetching(true);
-      const response = await fetch("/api/v1/deliverycharg/all");
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/all"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -34,13 +36,16 @@ function Shipping() {
   const handelsubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/v1/deliverycharg/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ Title: title, Price: price, Status: status }),
-      });
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ Title: title, Price: price, Status: status }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -80,13 +85,16 @@ function Shipping() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("/api/v1/deliverycharg/delete", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: deliveyId }), // Send the tax ID in the request body
-        })
+        fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/delete",
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: deliveyId }), // Send the tax ID in the request body
+          }
+        )
           .then((response) => {
             if (response.ok) {
               toast.success("deliverycharg delete successfully", {

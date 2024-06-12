@@ -18,17 +18,20 @@ function Tax() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/v1/tax/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          taxTitle: taxtitle,
-          taxPercentage: taxpercentage,
-          status: status,
-        }),
-      });
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/tax/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            taxTitle: taxtitle,
+            taxPercentage: taxpercentage,
+            status: status,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -75,7 +78,7 @@ function Tax() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("/api/v1/tax/delete", {
+        fetch("https://ssagriculturebackend.onrender.com/api/v1/tax/delete", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -111,7 +114,9 @@ function Tax() {
   const fetchtax = async () => {
     try {
       setFetching(true);
-      const response = await fetch("/api/v1/tax/alltax");
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/tax/alltax"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -143,18 +148,21 @@ function Tax() {
     e.preventDefault();
     try {
       // Make the API call to update tax
-      const response = await fetch("/api/v1/tax/update", {
-        method: "PATCH", // Use PUT method for update
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: taxToEdit._id, // Pass the ID of the tax being edited
-          taxTitle: taxToEdit.taxTitle,
-          taxPercentage: taxToEdit.taxPercentage,
-          status: taxToEdit.status,
-        }),
-      });
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/tax/update",
+        {
+          method: "PATCH", // Use PUT method for update
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: taxToEdit._id, // Pass the ID of the tax being edited
+            taxTitle: taxToEdit.taxTitle,
+            taxPercentage: taxToEdit.taxPercentage,
+            status: taxToEdit.status,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

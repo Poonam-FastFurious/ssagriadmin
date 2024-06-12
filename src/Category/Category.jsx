@@ -1,12 +1,49 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import useFetch from "../Customhooks/useFetch";
 
 function Category() {
-  const endpoint = "/api/v1/category/allcategory";
+  const endpoint =
+    "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `https://ssagriculturebackend.onrender.com/api/v1/category/delete?id=${id}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          Swal.fire("Deleted!", "Your category has been deleted.", "success");
+        } catch (error) {
+          console.error("Error deleting category:", error);
+          Swal.fire(
+            "Error!",
+            "There was an error deleting the category.",
+            "error"
+          );
+        }
+      }
+    });
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
   return (
     <>
       <div className="main-content">
@@ -57,30 +94,32 @@ function Category() {
                   <th scope="col">Image</th>
                   <th scope="col"> Title</th>
                   <th scope="col"> Date</th>
-
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {data.data.map((items, index) => (
+                {data.data.map((item, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>
                       <img
-                        src={items.avatar}
+                        src={item.avatar}
                         style={{ maxWidth: "70px", maxHeight: "70px" }}
                         alt=""
                       />
                     </td>
-                    <td>{items.title}</td>
-                    <td>{items.createdAt}</td>
-
+                    <td>{item.title}</td>
+                    <td>{item.createdAt}</td>
                     <td>
                       <div className="hstack gap-3 flex-wrap">
                         <Link to="#" className="link-success fs-15">
                           <i className="ri-edit-2-line"></i>
                         </Link>
-                        <Link to="#" className="link-danger fs-15">
+                        <Link
+                          to="#"
+                          className="link-danger fs-15"
+                          onClick={() => handleDelete(item._id)}
+                        >
                           <i className="ri-delete-bin-line"></i>
                         </Link>
                       </div>

@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function StockOut() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/Product/products"
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        const active = data.data.filter((product) => product.stock == 4);
+
+        setProducts(active);
+      } catch (err) {
+        throw (new Error("data not fetch "), err);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <>
       <div className="main-content">
@@ -54,180 +76,62 @@ function StockOut() {
                       <th scope="col">Image</th>
                       <th scope="col">Price</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Item Type</th>
+                      <th scope="col">Rating</th>
+                      <th scope="col">Stock</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="cardtableCheck04"
+                    {products.map((product, index) => (
+                      <tr key={index}>
+                        <td>
+                          <div className="form-check">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="cardtableCheck04"
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="cardtableCheck04"
+                            ></label>
+                          </div>
+                        </td>
+                        <td>
+                          <Link to="#" className="fw-semibold">
+                            {product.productTitle}
+                            <br />
+                            Category : {product.category}
+                          </Link>
+                        </td>
+                        <td>
+                          <img
+                            src={product.image}
+                            alt=""
+                            style={{ width: "100px" }}
                           />
-                          <label
-                            className="form-check-label"
-                            htmlFor="cardtableCheck04"
-                          ></label>
-                        </div>
-                      </td>
-                      <td>
-                        <Link to="#" className="fw-semibold">
-                          Half Sleeve Round Neck T-Shirts
-                          <br />
-                          Category : Fashion
-                        </Link>
-                      </td>
-                      <td>50</td>
-                      <td> $215.00</td>
-                      <td>48</td>
-                      <td>4.2</td>
-                      <td>
-                        <span className="badge bg-success">
-                          12 Oct, 202110:05 AM
-                        </span>
-                      </td>
-                      <td>
-                        <div className="hstack gap-3 flex-wrap">
-                          <Link to="#" className="link-success fs-15">
-                            <i className="ri-edit-2-line"></i>
-                          </Link>
-                          <Link to="#" className="link-danger fs-15">
-                            <i className="ri-delete-bin-line"></i>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="cardtableCheck04"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="cardtableCheck04"
-                          ></label>
-                        </div>
-                      </td>
-                      <td>
-                        <Link to="#" className="fw-semibold">
-                          Half Sleeve Round Neck T-Shirts
-                          <br />
-                          Category : Fashion
-                        </Link>
-                      </td>
-                      <td>50</td>
-                      <td> $215.00</td>
-                      <td>48</td>
-                      <td>4.2</td>
-                      <td>
-                        <span className="badge bg-success">
-                          12 Oct, 202110:05 AM
-                        </span>
-                      </td>
-                      <td>
-                        <div className="hstack gap-3 flex-wrap">
-                          <Link to="#" className="link-success fs-15">
-                            <i className="ri-edit-2-line"></i>
-                          </Link>
-                          <Link to="#" className="link-danger fs-15">
-                            <i className="ri-delete-bin-line"></i>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>{" "}
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="cardtableCheck04"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="cardtableCheck04"
-                          ></label>
-                        </div>
-                      </td>
-                      <td>
-                        <Link to="#" className="fw-semibold">
-                          Half Sleeve Round Neck T-Shirts
-                          <br />
-                          Category : Fashion
-                        </Link>
-                      </td>
-                      <td>50</td>
-                      <td> $215.00</td>
-                      <td>48</td>
-                      <td>4.2</td>
-                      <td>
-                        <span className="badge bg-success">
-                          12 Oct, 202110:05 AM
-                        </span>
-                      </td>
-                      <td>
-                        <div className="hstack gap-3 flex-wrap">
-                          <Link to="#" className="link-success fs-15">
-                            <i className="ri-edit-2-line"></i>
-                          </Link>
-                          <Link to="#" className="link-danger fs-15">
-                            <i className="ri-delete-bin-line"></i>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="cardtableCheck04"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="cardtableCheck04"
-                          ></label>
-                        </div>
-                      </td>
-                      <td>
-                        <Link to="#" className="fw-semibold">
-                          Half Sleeve Round Neck T-Shirts
-                          <br />
-                          Category : Fashion
-                        </Link>
-                      </td>
-                      <td>50</td>
-                      <td> $215.00</td>
-                      <td>48</td>
-                      <td>4.2</td>
-                      <td>
-                        <span className="badge bg-success">
-                          12 Oct, 202110:05 AM
-                        </span>
-                      </td>
-                      <td>
-                        <div className="hstack gap-3 flex-wrap">
-                          <Link to="#" className="link-success fs-15">
-                            <i className="ri-edit-2-line"></i>
-                          </Link>
-                          <Link to="#" className="link-danger fs-15">
-                            <i className="ri-delete-bin-line"></i>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                        <td> Rs {product.oneTimePrice}</td>
+                        <td>{product.status}</td>
+                        <td>{product.rating}</td>
+                        <td>
+                          <span className="badge bg-success">
+                            {product.stock}
+                          </span>
+                        </td>
+                        <td>
+                          <div className="hstack gap-3 flex-wrap">
+                            <Link to="#" className="link-success fs-15">
+                              <i className="ri-edit-2-line"></i>
+                            </Link>
+                            <Link to="#" className="link-danger fs-15">
+                              <i className="ri-delete-bin-line"></i>
+                            </Link>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

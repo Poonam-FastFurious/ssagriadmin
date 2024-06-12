@@ -4,16 +4,27 @@ import { Link } from "react-router-dom";
 function ListProduct() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  const [activeProducts, setActiveProducts] = useState([]);
+  const [inactiveProducts, setInactiveProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/v1/Product/products");
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/Product/products"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        const active = data.data.filter(
+          (product) => product.status === "active"
+        );
+        const inactive = data.data.filter(
+          (product) => product.status === "inactive"
+        );
         setProducts(data.data);
+        setActiveProducts(active);
+        setInactiveProducts(inactive);
       } catch (err) {
         throw (new Error("data not fetch "), err);
       }
@@ -24,7 +35,9 @@ function ListProduct() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await fetch("/api/v1/category/allcategory");
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -93,7 +106,7 @@ function ListProduct() {
                     <div className="card-body border-bottom">
                       <div>
                         <p className="text-muted text-uppercase fs-12 fw-medium mb-2">
-                          Products
+                          Category
                         </p>
                         <ul className="list-unstyled mb-0 filter-list">
                           {categories.map((category, index) => (
@@ -141,125 +154,6 @@ function ListProduct() {
                     </div>
 
                     <div className="accordion-item">
-                      <h2 className="accordion-header" id="flush-headingBrands">
-                        <button
-                          className="accordion-button bg-transparent shadow-none"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#flush-collapseBrands"
-                          aria-expanded="true"
-                          aria-controls="flush-collapseBrands"
-                        >
-                          <span className="text-muted text-uppercase fs-12 fw-medium">
-                            Brands
-                          </span>
-                          <span className="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
-                        </button>
-                      </h2>
-
-                      <div
-                        id="flush-collapseBrands"
-                        className="accordion-collapse collapse show"
-                        aria-labelledby="flush-headingBrands"
-                      >
-                        <div className="accordion-body text-body pt-0">
-                          <div className="search-box search-box-sm">
-                            <input
-                              type="text"
-                              className="form-control bg-light border-0"
-                              id="searchBrandsList"
-                              placeholder="Search Brands..."
-                            />
-                            <i className="ri-search-line search-icon"></i>
-                          </div>
-                          <div className="d-flex flex-column gap-2 mt-3 filter-check">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="Boat"
-                                id="productBrandRadio5"
-                                checked=""
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio5"
-                              >
-                                Boat
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="OnePlus"
-                                id="productBrandRadio4"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio4"
-                              >
-                                OnePlus
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="Realme"
-                                id="productBrandRadio3"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio3"
-                              >
-                                Realme
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="Sony"
-                                id="productBrandRadio2"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio2"
-                              >
-                                Sony
-                              </label>
-                            </div>
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value="JBL"
-                                id="productBrandRadio1"
-                                checked=""
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="productBrandRadio1"
-                              >
-                                JBL
-                              </label>
-                            </div>
-
-                            <div>
-                              <button
-                                type="button"
-                                className="btn btn-link text-decoration-none text-uppercase fw-medium p-0"
-                              >
-                                1,235 More
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="accordion-item">
                       <h2
                         className="accordion-header"
                         id="flush-headingDiscount"
@@ -280,7 +174,7 @@ function ListProduct() {
                       </h2>
                       <div
                         id="flush-collapseDiscount"
-                        className="accordion-collapse collapse"
+                        className="accordion-collapse collapse show"
                         aria-labelledby="flush-headingDiscount"
                       >
                         <div className="accordion-body text-body pt-1">
@@ -394,7 +288,7 @@ function ListProduct() {
 
                       <div
                         id="flush-collapseRating"
-                        className="accordion-collapse collapse"
+                        className="accordion-collapse collapse "
                         aria-labelledby="flush-headingRating"
                       >
                         <div className="accordion-body text-body">
@@ -719,294 +613,59 @@ function ListProduct() {
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
+                                {activeProducts.map((product, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      <div className="form-check">
+                                        <input
+                                          className="form-check-input"
+                                          type="checkbox"
+                                          value=""
+                                          id="cardtableCheck04"
+                                        />
+                                        <label
+                                          className="form-check-label"
+                                          htmlFor="cardtableCheck04"
+                                        ></label>
+                                      </div>
+                                    </td>
+                                    <td>
                                       <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
+                                        to={`${product._id}`}
+                                        className="fw-semibold"
                                       >
-                                        <i className="ri-edit-2-line"></i>
+                                        {product.productTitle}
+                                        <br />
+                                        Category : {product.category}
                                       </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
-                                      >
-                                        <i className="ri-edit-2-line"></i>
-                                      </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>{" "}
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
-                                      >
-                                        <i className="ri-edit-2-line"></i>
-                                      </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>{" "}
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
-                                      >
-                                        <i className="ri-edit-2-line"></i>
-                                      </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>{" "}
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
-                                      >
-                                        <i className="ri-edit-2-line"></i>
-                                      </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>{" "}
-                                <tr>
-                                  <td>
-                                    <div className="form-check">
-                                      <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="cardtableCheck04"
-                                      />
-                                      <label
-                                        className="form-check-label"
-                                        htmlFor="cardtableCheck04"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>
-                                    <Link to="#" className="fw-semibold">
-                                      Half Sleeve Round Neck T-Shirts
-                                      <br />
-                                      Category : Fashion
-                                    </Link>
-                                  </td>
-                                  <td>50</td>
-                                  <td> $215.00</td>
-                                  <td>48</td>
-                                  <td>4.2</td>
-                                  <td>
-                                    <span className="badge bg-success">
-                                      12 Oct, 202110:05 AM
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <div className="hstack gap-3 flex-wrap">
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-success fs-15"
-                                      >
-                                        <i className="ri-edit-2-line"></i>
-                                      </Link>
-                                      <Link
-                                        to="javascript:void(0);"
-                                        className="link-danger fs-15"
-                                      >
-                                        <i className="ri-delete-bin-line"></i>
-                                      </Link>
-                                    </div>
-                                  </td>
-                                </tr>
+                                    </td>
+                                    <td>{product.stock}</td>
+                                    <td> {product.oneTimePrice}</td>
+                                    <td>{product.subscriptionPrice}</td>
+                                    <td>{product.rating}</td>
+                                    <td>
+                                      <span className="badge bg-success">
+                                        {product.status}
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <div className="hstack gap-3 flex-wrap">
+                                        <Link
+                                          to="javascript:void(0);"
+                                          className="link-success fs-15"
+                                        >
+                                          <i className="ri-edit-2-line"></i>
+                                        </Link>
+                                        <Link
+                                          to="javascript:void(0);"
+                                          className="link-danger fs-15"
+                                        >
+                                          <i className="ri-delete-bin-line"></i>
+                                        </Link>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))}
                               </tbody>
                             </table>
                           </div>
@@ -1017,15 +676,103 @@ function ListProduct() {
                           id="productnav-draft"
                           role="tabpanel"
                         >
-                          <div className="py-4 text-center">
-                            <lord-icon
-                              src="../../../msoeawqm.json"
-                              trigger="loop"
-                              colors="primary:#405189,secondary:#0ab39c"
-                              style={{ width: "72px" }}
-                            ></lord-icon>
-                            <h5 className="mt-4">Sorry! No Result Found</h5>
+                          {" "}
+                          <div className="table-responsive table-card">
+                            <table className="table table-nowrap table-striped-columns mb-0">
+                              <thead className="table-light">
+                                <tr>
+                                  <th scope="col">
+                                    <div className="form-check">
+                                      <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="cardtableCheck"
+                                      />
+                                      <label
+                                        className="form-check-label"
+                                        htmlFor="cardtableCheck"
+                                      ></label>
+                                    </div>
+                                  </th>
+                                  <th scope="col">Product</th>
+                                  <th scope="col">Stock</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Orders</th>
+                                  <th scope="col">Rating</th>
+                                  <th scope="col">Publish</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {inactiveProducts.map((product, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      <div className="form-check">
+                                        <input
+                                          className="form-check-input"
+                                          type="checkbox"
+                                          value=""
+                                          id="cardtableCheck04"
+                                        />
+                                        <label
+                                          className="form-check-label"
+                                          htmlFor="cardtableCheck04"
+                                        ></label>
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <Link
+                                        to={`${product._id}`}
+                                        className="fw-semibold"
+                                      >
+                                        {product.productTitle}
+                                        <br />
+                                        Category : {product.category}
+                                      </Link>
+                                    </td>
+                                    <td>{product.stock}</td>
+                                    <td> {product.oneTimePrice}</td>
+                                    <td>{product.subscriptionPrice}</td>
+                                    <td>{product.rating}</td>
+                                    <td>
+                                      <span className="badge bg-success">
+                                        {product.status}
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <div className="hstack gap-3 flex-wrap">
+                                        <Link
+                                          to="javascript:void(0);"
+                                          className="link-success fs-15"
+                                        >
+                                          <i className="ri-edit-2-line"></i>
+                                        </Link>
+                                        <Link
+                                          to="javascript:void(0);"
+                                          className="link-danger fs-15"
+                                        >
+                                          <i className="ri-delete-bin-line"></i>
+                                        </Link>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
                           </div>
+                          {(inactiveProducts.length === 0) &
+                          (
+                            <div className="py-4 text-center">
+                              <lord-icon
+                                src="../../../msoeawqm.json"
+                                trigger="loop"
+                                colors="primary:#405189,secondary:#0ab39c"
+                                style={{ width: "72px" }}
+                              ></lord-icon>
+                              <h5 className="mt-4">Sorry! No Result Found</h5>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
