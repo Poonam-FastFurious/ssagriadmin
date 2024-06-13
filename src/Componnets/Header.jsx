@@ -801,11 +801,20 @@ function Header() {
                   <ul className="nav nav-sm flex-column">
                     <li className="nav-item">
                       <Link
-                        to="/advance-ui-sweetalerts"
+                        to="/Blogs"
                         className="nav-link"
                         data-key="t-sweet-alerts"
                       >
-                        Bloges
+                        Add Bloges
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        to="/Bloglist"
+                        className="nav-link"
+                        data-key="t-sweet-alerts"
+                      >
+                        Manage Blogs
                       </Link>
                     </li>
                   </ul>

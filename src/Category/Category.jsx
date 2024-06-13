@@ -1,12 +1,75 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useFetch from "../Customhooks/useFetch";
+import { useState } from "react";
 
 function Category() {
   const endpoint =
     "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
+  const [modalData, setModalData] = useState({
+    id: "",
+    title: "",
+    slug: "",
+    metaKeywords: "",
+    metaDescription: "",
+  });
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleEditModalOpen = (item) => {
+    setModalData({
+      id: item._id,
+      title: item.title,
+      slug: item.slug,
+      metaKeywords: item.metaKeywords,
+      metaDescription: item.metaDescription,
+    });
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    // Optionally reset modalData state if needed
+  };
+
+  const handleUpdateCategory = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `https://ssagriculturebackend.onrender.com/api/v1/category/update`,
+        {
+          method: "PATCH", // Adjust method based on your API
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: modalData.id,
+            title: modalData.title,
+            slug: modalData.slug,
+            metaKeywords: modalData.metaKeywords,
+            metaDescription: modalData.metaDescription,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Assuming success, show success message
+      Swal.fire("Updated!", "Your category has been updated.", "success");
+
+      // Close modal after successful update
+      setShowModal(false);
+
+      // Optionally: Fetch updated data or update state to reflect changes
+    } catch (error) {
+      console.error("Error updating category:", error);
+      Swal.fire("Error!", "There was an error updating the category.", "error");
+    }
+  };
   const handleDelete = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -112,7 +175,11 @@ function Category() {
                     <td>{item.createdAt}</td>
                     <td>
                       <div className="hstack gap-3 flex-wrap">
-                        <Link to="#" className="link-success fs-15">
+                        <Link
+                          to="#"
+                          className="link-success fs-15"
+                          onClick={() => handleEditModalOpen(item)}
+                        >
                           <i className="ri-edit-2-line"></i>
                         </Link>
                         <Link
@@ -128,6 +195,132 @@ function Category() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`modal fade ${showModal ? "show" : ""}`}
+        id="showModal"
+        tabIndex="-1"
+        aria-hidden="true"
+        style={{ display: showModal ? "block" : "none" }}
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header bg-light p-3">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Edit Category
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                onClick={handleModalClose}
+              ></button>
+            </div>
+            <form
+              className="tablelist-form"
+              autoComplete="off"
+              onSubmit={handleUpdateCategory}
+            >
+              <div className="modal-body">
+                <input type="hidden" id="id-field" value={modalData.id} />
+
+                <div className="mb-3">
+                  <label htmlFor="title-field" className="form-label">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    id="title-field"
+                    className="form-control"
+                    placeholder="Enter title"
+                    value={modalData.title}
+                    onChange={(e) =>
+                      setModalData({ ...modalData, title: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="slug-field" className="form-label">
+                    Slug
+                  </label>
+                  <input
+                    type="text"
+                    id="slug-field"
+                    className="form-control"
+                    placeholder="Enter slug"
+                    value={modalData.slug}
+                    onChange={(e) =>
+                      setModalData({ ...modalData, slug: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="metaKeywords-field" className="form-label">
+                    Meta Keywords
+                  </label>
+                  <input
+                    type="text"
+                    id="metaKeywords-field"
+                    className="form-control"
+                    placeholder="Enter meta keywords"
+                    value={modalData.metaKeywords}
+                    onChange={(e) =>
+                      setModalData({
+                        ...modalData,
+                        metaKeywords: e.target.value,
+                      })
+                    }
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="metaDescription-field" className="form-label">
+                    Meta Description
+                  </label>
+                  <input
+                    type="text"
+                    id="metaDescription-field"
+                    className="form-control"
+                    placeholder="Enter meta description"
+                    value={modalData.metaDescription}
+                    onChange={(e) =>
+                      setModalData({
+                        ...modalData,
+                        metaDescription: e.target.value,
+                      })
+                    }
+                    required
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <div className="hstack gap-2 justify-content-end">
+                  <button
+                    type="button"
+                    className="btn btn-light"
+                    data-bs-dismiss="modal"
+                    onClick={handleModalClose}
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    id="edit-btn"
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

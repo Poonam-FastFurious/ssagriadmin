@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function ListProduct() {
   const [products, setProducts] = useState([]);
@@ -50,6 +52,35 @@ function ListProduct() {
 
     fetchCategory();
   }, []);
+  const deleteProduct = async (productId) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "Cancle",
+      });
+
+      if (result.isConfirmed) {
+        // API call to delete the product
+        await axios.delete(
+          `https://ssagriculturebackend.onrender.com/api/v1/Product/delete?id=${productId}`
+        );
+        Swal.fire("Deleted!", "Your Product has been deleted.", "success");
+        // Update the products list or re-fetch the products here
+      }
+    } catch (error) {
+      Swal.fire(
+        "Failed!",
+        "Product ko delete karne mein samasya aayi.",
+        "error"
+      );
+    }
+  };
   return (
     <>
       <div className="main-content">
@@ -122,7 +153,7 @@ function ListProduct() {
                                 </div>
                               </Link>
                             </li>
-                          ))}{" "}
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -568,6 +599,9 @@ function ListProduct() {
                                         <Link
                                           to="javascript:void(0);"
                                           className="link-danger fs-15"
+                                          onClick={() =>
+                                            deleteProduct(product._id)
+                                          }
                                         >
                                           <i className="ri-delete-bin-line"></i>
                                         </Link>
@@ -659,6 +693,9 @@ function ListProduct() {
                                         <Link
                                           to="javascript:void(0);"
                                           className="link-danger fs-15"
+                                          onClick={() =>
+                                            deleteProduct(product._id)
+                                          }
                                         >
                                           <i className="ri-delete-bin-line"></i>
                                         </Link>
@@ -751,6 +788,9 @@ function ListProduct() {
                                         <Link
                                           to="javascript:void(0);"
                                           className="link-danger fs-15"
+                                          onClick={() =>
+                                            deleteProduct(product._id)
+                                          }
                                         >
                                           <i className="ri-delete-bin-line"></i>
                                         </Link>

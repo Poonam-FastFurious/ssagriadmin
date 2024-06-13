@@ -1,7 +1,37 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Transaction() {
+  const [transactions, setTransactions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10); // 10 items per page
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/payments/"
+        );
+        const data = await response.json();
+        if (data.success) {
+          setTransactions(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching transactions:", error);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTransactions = transactions.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
       <div className="main-content">
@@ -144,65 +174,78 @@ function Transaction() {
                         <tr>
                           <th scope="col">Id</th>
                           <th scope="col">Customer Email</th>
-                          <th scope="col"> Transaction ID</th>
-                          <th scope="col"> Order Status</th>
+                          <th scope="col">Transaction ID</th>
+                          <th scope="col">Order Status</th>
                           <th scope="col">Payment Status</th>
                           <th scope="col">Total Amount</th>
-
-                          <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>user@gmail.com</td>
-                          <td>$t1NCSPl7EG</td>
-                          <td> Pending</td>
-                          <td>Paid</td>
-                          <td>115584</td>
-
-                          <td>
-                            <div className="hstack gap-3 flex-wrap">
-                              <Link className="link-danger fs-15">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Basic Plan</td>
-                          <td>$860</td>
-                          <td>Nov 22, 2021</td>
-                          <td>Nov 22, 2021</td>
-                          <td>Nov 22, 2021</td>
-
-                          <td>
-                            <div className="hstack gap-3 flex-wrap">
-                              <Link className="link-danger fs-15">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Basic Plan</td>
-                          <td>$860</td>
-                          <td>Nov 22, 2021</td>
-                          <td>Nov 22, 2021</td>
-                          <td>Nov 22, 2021</td>
-
-                          <td>
-                            <div className="hstack gap-3 flex-wrap">
-                              <Link className="link-danger fs-15">
-                                <i className="ri-delete-bin-line"></i>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
+                        {currentTransactions.map((transaction, index) => (
+                          <tr key={index}>
+                            <th scope="row">{indexOfFirstItem + index + 1}</th>
+                            <td>user@gmail.com</td>
+                            <td>{transaction.paymentID}</td>
+                            <td>Pending</td>
+                            <td>{transaction.status}</td>
+                            <td>{transaction.amount}</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
+                    <nav className="mt-3">
+                      <ul className="pagination">
+                        <li
+                          className={`page-item ${
+                            currentPage === 1 ? "disabled" : ""
+                          }`}
+                        >
+                          <button
+                            className="page-link"
+                            onClick={() => paginate(currentPage - 1)}
+                          >
+                            Previous
+                          </button>
+                        </li>
+                        {Array.from(
+                          {
+                            length: Math.ceil(
+                              transactions.length / itemsPerPage
+                            ),
+                          },
+                          (_, index) => (
+                            <li
+                              key={index}
+                              className={`page-item ${
+                                currentPage === index + 1 ? "active" : ""
+                              }`}
+                            >
+                              <button
+                                className="page-link"
+                                onClick={() => paginate(index + 1)}
+                              >
+                                {index + 1}
+                              </button>
+                            </li>
+                          )
+                        )}
+                        <li
+                          className={`page-item ${
+                            currentPage ===
+                            Math.ceil(transactions.length / itemsPerPage)
+                              ? "disabled"
+                              : ""
+                          }`}
+                        >
+                          <button
+                            className="page-link"
+                            onClick={() => paginate(currentPage + 1)}
+                          >
+                            Next
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>

@@ -32,6 +32,8 @@ import Profile from "./SiteSetting/Profile";
 import Privacypolicy from "./SiteSetting/Privacypolicy";
 import Termandcondition from "./SiteSetting/Termandcondition";
 import Faq from "./SiteSetting/Faq";
+import Addblogs from "./Blogs/Addblogs";
+import Blogs from "./Blogs/Blogs";
 
 function App() {
   return (
@@ -70,6 +72,8 @@ function App() {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/pages-privacy-policy" element={<Privacypolicy />} />
             <Route path="/pages-faqs" element={<Faq />} />
+            <Route path="/Blogs" element={<Addblogs />} />
+            <Route path="/Bloglist" element={<Blogs />} />
             <Route
               path="/pages-term-conditions"
               element={<Termandcondition />}

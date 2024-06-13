@@ -11,6 +11,16 @@ function Order() {
   const [fetching, setFetching] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [newStatus, setNewStatus] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+
+  // Calculate indexes for slicing current page items
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Pagination control handlers
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -106,6 +116,11 @@ function Order() {
       console.error("Failed to update order status", err);
     }
   };
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(orders.length / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <div className="main-content">
@@ -351,7 +366,7 @@ function Order() {
                                 </tr>
                               </thead>
                               <tbody className="list form-check-all">
-                                {orders.map((order, index) => (
+                                {currentItems.map((order, index) => (
                                   <tr key={index}>
                                     <th scope="row">
                                       <div className="form-check">
@@ -433,6 +448,18 @@ function Order() {
                                 ))}
                               </tbody>
                             </table>
+                            <ul className="pagination justify-content-end">
+                              {pageNumbers.map((number) => (
+                                <li key={number} className="page-item">
+                                  <button
+                                    onClick={() => paginate(number)}
+                                    className="page-link"
+                                  >
+                                    {number}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
                             {orders.length === 0 && !fetching && (
                               <div className="noresult">
                                 <div className="text-center">
