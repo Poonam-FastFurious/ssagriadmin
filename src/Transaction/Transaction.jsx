@@ -10,7 +10,7 @@ function Transaction() {
     const fetchTransactions = async () => {
       try {
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/payments/"
+          "https://ssagricultureapi.brandbell.in/api/v1/payments/"
         );
         const data = await response.json();
         if (data.success) {

@@ -69,7 +69,7 @@ function Termsandcondition() {
 
     try {
       const response = await axios.post(
-        "https://ssagriculturebackend.onrender.com/api/v1/terms/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/terms/add",
         privacyPolicyData
       );
       console.log("terms & condition added:", response.data);

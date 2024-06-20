@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function Category() {
   const endpoint =
-    "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
+    "https://ssagricultureapi.brandbell.in/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
   const [modalData, setModalData] = useState({
     id: "",
@@ -38,7 +38,7 @@ function Category() {
 
     try {
       const response = await fetch(
-        `https://ssagriculturebackend.onrender.com/api/v1/category/update`,
+        `https://ssagricultureapi.brandbell.in/api/v1/category/update`,
         {
           method: "PATCH", // Adjust method based on your API
           headers: {
@@ -83,7 +83,7 @@ function Category() {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `https://ssagriculturebackend.onrender.com/api/v1/category/delete?id=${id}`,
+            `https://ssagricultureapi.brandbell.in/api/v1/category/delete?id=${id}`,
             {
               method: "DELETE",
             }

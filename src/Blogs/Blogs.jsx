@@ -9,7 +9,7 @@ const Blogs = () => {
     const fetchBlogPosts = async () => {
       try {
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/blog/allblogs"
+          "https://ssagricultureapi.brandbell.in/api/v1/blog/allblogs"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch blog posts");

@@ -12,7 +12,7 @@ function ListProduct() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/Product/products"
+          "https://ssagricultureapi.brandbell.in/api/v1/Product/products"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,7 +38,7 @@ function ListProduct() {
     const fetchCategory = async () => {
       try {
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory"
+          "https://ssagricultureapi.brandbell.in/api/v1/category/allcategory"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +68,7 @@ function ListProduct() {
       if (result.isConfirmed) {
         // API call to delete the product
         await axios.delete(
-          `https://ssagriculturebackend.onrender.com/api/v1/Product/delete?id=${productId}`
+          `https://ssagricultureapi.brandbell.in/api/v1/Product/delete?id=${productId}`
         );
         Swal.fire("Deleted!", "Your Product has been deleted.", "success");
         // Update the products list or re-fetch the products here

@@ -69,7 +69,7 @@ function PrivacyPolicy() {
 
     try {
       const response = await axios.post(
-        "https://ssagriculturebackend.onrender.com/api/v1/privacy/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/privacy/add",
         privacyPolicyData
       );
       console.log("Privacy Policy added:", response.data);

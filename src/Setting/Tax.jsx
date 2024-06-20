@@ -19,7 +19,7 @@ function Tax() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/tax/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/tax/add",
         {
           method: "POST",
           headers: {
@@ -78,7 +78,7 @@ function Tax() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("https://ssagriculturebackend.onrender.com/api/v1/tax/delete", {
+        fetch("https://ssagricultureapi.brandbell.in/api/v1/tax/delete", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +115,7 @@ function Tax() {
     try {
       setFetching(true);
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/tax/alltax"
+        "https://ssagricultureapi.brandbell.in/api/v1/tax/alltax"
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -149,7 +149,7 @@ function Tax() {
     try {
       // Make the API call to update tax
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/tax/update",
+        "https://ssagricultureapi.brandbell.in/api/v1/tax/update",
         {
           method: "PATCH", // Use PUT method for update
           headers: {

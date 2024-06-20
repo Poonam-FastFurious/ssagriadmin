@@ -30,7 +30,7 @@ function Header() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("https://ssagriculturebackend.onrender.com/api/v1/admin/logout", {
+        fetch("https://ssagricultureapi.brandbell.in/api/v1/admin/logout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

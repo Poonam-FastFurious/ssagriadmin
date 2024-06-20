@@ -29,7 +29,7 @@ function AddCategories() {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/category/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/category/add",
         {
           method: "POST",
           body: formData,

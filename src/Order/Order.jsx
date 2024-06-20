@@ -26,7 +26,7 @@ function Order() {
       try {
         setFetching(true);
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/order/allorder"
+          "https://ssagricultureapi.brandbell.in/api/v1/order/allorder"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -64,7 +64,7 @@ function Order() {
     if (!selectedOrder) return;
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/order/updateorder",
+        "https://ssagricultureapi.brandbell.in/api/v1/order/updateorder",
         {
           method: "PATCH",
           headers: {

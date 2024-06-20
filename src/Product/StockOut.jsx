@@ -7,7 +7,7 @@ function StockOut() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/Product/products"
+          "https://ssagricultureapi.brandbell.in/api/v1/Product/products"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

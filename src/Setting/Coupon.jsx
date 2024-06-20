@@ -20,7 +20,7 @@ function Coupon() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/coupon/add",
         {
           method: "POST",
           headers: {
@@ -82,7 +82,7 @@ function Coupon() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/coupon/delete",
+          "https://ssagricultureapi.brandbell.in/api/v1/coupon/delete",
           {
             method: "DELETE",
             headers: {
@@ -121,7 +121,7 @@ function Coupon() {
     try {
       setFetching(true);
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/coupons"
+        "https://ssagricultureapi.brandbell.in/api/v1/coupon/coupons"
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -153,7 +153,7 @@ function Coupon() {
     try {
       // Make the API call to update tax
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/update",
+        "https://ssagricultureapi.brandbell.in/api/v1/coupon/update",
         {
           method: "PATCH", // Use PUT method for update
           headers: {

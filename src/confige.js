@@ -1,1 +1,1 @@
-export const Baseurl = "https://ssagriculturebackend.onrender.com";
+export const Baseurl = "https://ssagricultureapi.brandbell.in";

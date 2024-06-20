@@ -41,7 +41,7 @@ function Addblogs() {
 
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/blog/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/blog/add",
         {
           method: "POST",
           body: formData,

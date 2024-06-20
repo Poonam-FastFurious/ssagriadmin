@@ -7,7 +7,7 @@ import useFetch from "../Customhooks/useFetch";
 
 function AddProduct() {
   const endpoint =
-    "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
+    "https://ssagricultureapi.brandbell.in/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
 
   const [image, setImage] = useState("");
@@ -56,7 +56,7 @@ function AddProduct() {
     try {
       setUploadloading(true);
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/Product/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/Product/add",
         {
           method: "POST",
           body: formData,

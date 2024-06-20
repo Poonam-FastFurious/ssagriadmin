@@ -16,7 +16,7 @@ function Profile() {
   const [adminProfile, setAdminProfile] = useState("");
   const fetchAdminProfile = () => {
     fetch(
-      `https://ssagriculturebackend.onrender.com/api/v1/admin/Profile?adminId=${adminId}`,
+      `https://ssagricultureapi.brandbell.in/api/v1/admin/Profile?adminId=${adminId}`,
       {
         method: "GET",
         headers: {
@@ -62,7 +62,7 @@ function Profile() {
 
     // API request to change password
     fetch(
-      "https://ssagriculturebackend.onrender.com/api/v1/admin/change-password",
+      "https://ssagricultureapi.brandbell.in/api/v1/admin/change-password",
       {
         method: "POST",
         headers: {

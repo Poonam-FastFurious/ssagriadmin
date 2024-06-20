@@ -17,7 +17,7 @@ function Shipping() {
     try {
       setFetching(true);
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/all"
+        "https://ssagricultureapi.brandbell.in/api/v1/deliverycharg/all"
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -37,7 +37,7 @@ function Shipping() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/deliverycharg/add",
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ function Shipping() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/deliverycharg/delete",
+          "https://ssagricultureapi.brandbell.in/api/v1/deliverycharg/delete",
           {
             method: "DELETE",
             headers: {

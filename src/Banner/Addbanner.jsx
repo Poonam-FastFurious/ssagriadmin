@@ -32,7 +32,7 @@ function Addbanner() {
 
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/Banner/add",
+        "https://ssagricultureapi.brandbell.in/api/v1/Banner/add",
         {
           method: "POST",
           body: formData,

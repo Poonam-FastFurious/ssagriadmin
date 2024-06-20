@@ -4,7 +4,7 @@ import useFetch from "../Customhooks/useFetch";
 
 function Customerlist() {
   const endpoint =
-    "https://ssagriculturebackend.onrender.com/api/v1/user/alluser";
+    "https://ssagricultureapi.brandbell.in/api/v1/user/alluser";
   const { data, loading, error } = useFetch(endpoint);
 
   if (loading) return <p>Loading...</p>;

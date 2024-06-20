@@ -9,7 +9,7 @@ function Banner() {
   const fetchbanner = async () => {
     try {
       const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/Banner/allabnner"
+        "https://ssagricultureapi.brandbell.in/api/v1/Banner/allabnner"
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,7 +39,7 @@ function Banner() {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/Banner/delete",
+          "https://ssagricultureapi.brandbell.in/api/v1/Banner/delete",
           {
             method: "DELETE",
             headers: {
