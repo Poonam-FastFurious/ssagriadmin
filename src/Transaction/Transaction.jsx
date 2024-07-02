@@ -10,7 +10,9 @@ function Transaction() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(Baseurl + "/api/v1/payments/");
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/payments/"
+        );
         const data = await response.json();
         if (data.success) {
           setTransactions(data.data);

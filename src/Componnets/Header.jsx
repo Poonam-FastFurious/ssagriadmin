@@ -31,7 +31,7 @@ function Header() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(Baseurl + "/api/v1/admin/logout", {
+        fetch("https://ssagriculturebackend.onrender.com/api/v1/admin/logout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

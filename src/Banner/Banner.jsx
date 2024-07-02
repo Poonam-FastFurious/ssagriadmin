@@ -9,7 +9,9 @@ function Banner() {
   const [allbanner, setAllbanner] = useState([]);
   const fetchbanner = async () => {
     try {
-      const response = await fetch(Baseurl + "/api/v1/Banner/allabnner");
+      const response = await fetch(
+        "https://ssagriculturebackend.onrender.com/api/v1/Banner/allabnner"
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -37,13 +39,16 @@ function Banner() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(Baseurl + "/api/v1/Banner/delete", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: bannerId }), // Send the tax ID in the request body
-        })
+        fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/Banner/delete",
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: bannerId }), // Send the tax ID in the request body
+          }
+        )
           .then((response) => {
             if (response.ok) {
               toast.success("Banner delete successfully", {

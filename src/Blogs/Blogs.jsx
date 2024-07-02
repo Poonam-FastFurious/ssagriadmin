@@ -9,7 +9,9 @@ const Blogs = () => {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch(Baseurl + "/api/v1/blog/allblogs");
+        const response = await fetch(
+          "https://ssagriculturebackend.onrender.com/api/v1/blog/allblogs"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch blog posts");
         }

@@ -70,7 +70,7 @@ function Termsandcondition() {
 
     try {
       const response = await axios.post(
-        Baseurl + "/api/v1/terms/add",
+        "https://ssagriculturebackend.onrender.com/api/v1/terms/add",
         privacyPolicyData
       );
       console.log("terms & condition added:", response.data);
