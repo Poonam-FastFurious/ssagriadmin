@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Loader.css";
+import { Baseurl } from "../confige";
 
 function Addbanner() {
   const [image, setImage] = useState("");
@@ -31,13 +32,10 @@ function Addbanner() {
     setLoading(true); // Start loader
 
     try {
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/Banner/add",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/Banner/add", {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

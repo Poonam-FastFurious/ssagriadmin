@@ -5,9 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import logo from "../assets/images/logonew.png";
+import { Baseurl } from "../confige";
 function Header() {
-  const token = localStorage.getItem("token");
-  const adminId = localStorage.getItem("AdminId");
+  const token = localStorage.getItem("accessToken");
+  const adminId = localStorage.getItem("adminId");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,7 +31,7 @@ function Header() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("https://ssagriculturebackend.onrender.com/api/v1/admin/logout", {
+        fetch(Baseurl + "/api/v1/admin/logout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

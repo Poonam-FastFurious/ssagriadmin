@@ -5,6 +5,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import "./Setting.css";
 import { Link } from "react-router-dom";
+import { Baseurl } from "../confige";
 function Coupon() {
   const [allcoupon, setAllcoupon] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -19,22 +20,19 @@ function Coupon() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: title,
-            code: code,
-            numberOfTimes: numberOfTimes,
-            discount: discount,
-            status: status,
-          }),
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/coupon/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          code: code,
+          numberOfTimes: numberOfTimes,
+          discount: discount,
+          status: status,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -81,16 +79,13 @@ function Coupon() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/coupon/delete",
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ id: taxId }), // Send the tax ID in the request body
-          }
-        )
+        fetch(Baseurl + "/api/v1/coupon/delete", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: taxId }), // Send the tax ID in the request body
+        })
           .then((response) => {
             if (response.ok) {
               toast.success("Coupon delete successfully", {
@@ -120,9 +115,7 @@ function Coupon() {
   const fetchcoupon = async () => {
     try {
       setFetching(true);
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/coupons"
-      );
+      const response = await fetch(Baseurl + "/api/v1/coupon/coupons");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -152,23 +145,20 @@ function Coupon() {
     e.preventDefault();
     try {
       // Make the API call to update tax
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/coupon/update",
-        {
-          method: "PATCH", // Use PUT method for update
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: coupontoEdit._id, // Pass the ID of the tax being edited
-            title: coupontoEdit.title,
-            code: coupontoEdit.code,
-            status: coupontoEdit.status,
-            discount: coupontoEdit.discount,
-            numberOfTimes: coupontoEdit.numberOfTimes,
-          }),
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/coupon/update", {
+        method: "PATCH", // Use PUT method for update
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: coupontoEdit._id, // Pass the ID of the tax being edited
+          title: coupontoEdit.title,
+          code: coupontoEdit.code,
+          status: coupontoEdit.status,
+          discount: coupontoEdit.discount,
+          numberOfTimes: coupontoEdit.numberOfTimes,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();

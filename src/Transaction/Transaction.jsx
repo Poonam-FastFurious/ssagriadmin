@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Baseurl } from "../confige";
 
 function Transaction() {
   const [transactions, setTransactions] = useState([]);
@@ -9,9 +10,7 @@ function Transaction() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/payments/"
-        );
+        const response = await fetch(Baseurl + "/api/v1/payments/");
         const data = await response.json();
         if (data.success) {
           setTransactions(data.data);

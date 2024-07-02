@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useFetch from "../Customhooks/useFetch";
 import { useState } from "react";
+import { Baseurl } from "../confige";
 
 function Category() {
-  const endpoint =
-    "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
+  const endpoint = Baseurl + "/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
   const [modalData, setModalData] = useState({
     id: "",
@@ -37,22 +37,19 @@ function Category() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `https://ssagriculturebackend.onrender.com/api/v1/category/update`,
-        {
-          method: "PATCH", // Adjust method based on your API
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: modalData.id,
-            title: modalData.title,
-            slug: modalData.slug,
-            metaKeywords: modalData.metaKeywords,
-            metaDescription: modalData.metaDescription,
-          }),
-        }
-      );
+      const response = await fetch(`${Baseurl}/api/v1/category/update`, {
+        method: "PATCH", // Adjust method based on your API
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: modalData.id,
+          title: modalData.title,
+          slug: modalData.slug,
+          metaKeywords: modalData.metaKeywords,
+          metaDescription: modalData.metaDescription,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -83,7 +80,7 @@ function Category() {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `https://ssagriculturebackend.onrender.com/api/v1/category/delete?id=${id}`,
+            `${Baseurl}/api/v1/category/delete?id=${id}`,
             {
               method: "DELETE",
             }

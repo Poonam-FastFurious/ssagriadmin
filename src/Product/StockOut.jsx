@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Baseurl } from "../confige";
 
 function StockOut() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/Product/products"
-        );
+        const response = await fetch(Baseurl + "/api/v1/Product/products");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

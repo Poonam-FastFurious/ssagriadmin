@@ -2,57 +2,68 @@
 import { useState } from "react";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 import logo from "../assets/images/logonew.png";
 import "react-toastify/dist/ReactToastify.css";
+import { Baseurl } from "../confige";
 function Signin() {
-  const [username, setUsername] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const handelsubmit = async (e) => {
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const isEmail = (value) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/admin/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
+      const isEmailAddress = isEmail(usernameOrEmail);
+      const payload = isEmailAddress
+        ? { email: usernameOrEmail, password }
+        : { username: usernameOrEmail, password };
+
+      const response = await fetch(Baseurl + "/api/v1/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
       const data = await response.json();
 
-      toast.success("🦄Login Successfull", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        onClose: () => {
-          localStorage.setItem("token", data.data.accessToken);
-          localStorage.setItem("AdminId", data.data.user._id);
-          navigate("/");
-        },
-      });
+      if (response.ok) {
+        // Handle successful login
+        const { accessToken, refreshToken, user } = data.data;
+
+        // Store in localStorage
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("adminId", user._id);
+
+        // Store in cookies
+        Cookies.set("accessToken", accessToken, { expires: 1 }); // 1 day expiration
+        Cookies.set("refreshToken", refreshToken, { expires: 7 }); // 7 days expiration
+        Cookies.set("adminId", user._id, { expires: 7 });
+
+        // Redirect to the dashboard or another page
+        navigate("/");
+      } else {
+        // Handle errors
+        setError(data.message || "An error occurred. Please try again.");
+      }
     } catch (error) {
-      toast.error("invalid userid or password", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      setError("An error occurred. Please try again.");
     }
   };
   return (
@@ -115,14 +126,14 @@ function Signin() {
                                 </div>
                                 <div className="carousel-item">
                                   <p className="fs-15 fst-italic">
-                                    " The theme is really great with an amazing
-                                    customer support."
+                                    " SSagriculture is really great with an
+                                    amazing customer support."
                                   </p>
                                 </div>
                                 <div className="carousel-item">
                                   <p className="fs-15 fst-italic">
-                                    " Great! Clean code, clean design, easy for
-                                    customization. Thanks very much! "
+                                    " SSagriculture is really great with an
+                                    amazing customer support."
                                   </p>
                                 </div>
                               </div>
@@ -137,12 +148,12 @@ function Signin() {
                         <div>
                           <h5 className="text-primary">Welcome Back !</h5>
                           <p className="text-muted">
-                            Sign in to continue to Velzon.
+                            Sign in to continue to SSAgriculture.
                           </p>
                         </div>
 
                         <div className="mt-4">
-                          <form onSubmit={handelsubmit}>
+                          <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                               <label htmlFor="username" className="form-label">
                                 Username
@@ -152,8 +163,10 @@ function Signin() {
                                 className="form-control"
                                 id="username"
                                 placeholder="Enter username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                value={usernameOrEmail}
+                                onChange={(e) =>
+                                  setUsernameOrEmail(e.target.value)
+                                }
                               />
                             </div>
 
@@ -171,7 +184,7 @@ function Signin() {
                               </label>
                               <div className="position-relative auth-pass-inputgroup mb-3">
                                 <input
-                                  type="password"
+                                  type={showPassword ? "text" : "password"}
                                   className="form-control pe-5 password-input"
                                   placeholder="Enter password"
                                   id="password-input"
@@ -182,12 +195,19 @@ function Signin() {
                                   className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                   type="button"
                                   id="password-addon"
+                                  onClick={togglePasswordVisibility}
                                 >
-                                  <i className="ri-eye-fill align-middle"></i>
+                                  <i
+                                    className={`ri-${
+                                      showPassword ? "eye-off" : "eye"
+                                    }-fill align-middle`}
+                                  ></i>
                                 </button>
                               </div>
                             </div>
-
+                            {error && (
+                              <div className="alert alert-danger">{error}</div>
+                            )}
                             <div className="form-check">
                               <input
                                 className="form-check-input"
@@ -221,6 +241,7 @@ function Signin() {
 
                               <div
                                 style={{
+                                  visibility: "hidden",
                                   display: "flex",
                                   gap: "3px",
                                   justifyContent: "center",

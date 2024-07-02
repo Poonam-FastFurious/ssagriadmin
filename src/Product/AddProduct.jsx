@@ -4,10 +4,10 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { toast } from "react-toastify";
 import useFetch from "../Customhooks/useFetch";
+import { Baseurl } from "../confige";
 
 function AddProduct() {
-  const endpoint =
-    "https://ssagriculturebackend.onrender.com/api/v1/category/allcategory";
+  const endpoint = Baseurl + "/api/v1/category/allcategory";
   const { data, loading, error } = useFetch(endpoint);
 
   const [image, setImage] = useState("");
@@ -55,13 +55,10 @@ function AddProduct() {
 
     try {
       setUploadloading(true);
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/Product/add",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/Product/add", {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -105,7 +102,6 @@ function AddProduct() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log(data);
   return (
     <>
       <div className="main-content">

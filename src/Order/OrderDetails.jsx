@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Link, useParams } from "react-router-dom";
+import { Baseurl } from "../confige";
 function OrderDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
@@ -9,7 +10,7 @@ function OrderDetails() {
     const fetchOrder = async () => {
       try {
         const response = await fetch(
-          `https://ssagriculturebackend.onrender.com/api/v1/order/singleorder/${id}`
+          `${Baseurl}/api/v1/order/singleorder/${id}`
         );
         const data = await response.json();
         setOrder(data.data);
