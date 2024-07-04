@@ -29,13 +29,10 @@ function AddCategories() {
 
     try {
       setLoading(true);
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/category/add",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/category/add", {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

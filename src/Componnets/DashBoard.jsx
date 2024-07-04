@@ -13,7 +13,7 @@ function DashBoard() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     // Fetch the products from the API
-    fetch("https://ssagriculturebackend.onrender.com/api/v1/Product/products")
+    fetch(Baseurl + "/api/v1/Product/products")
       .then((responce) => responce.json())
       .then((data) => setProducts(data.data));
   }, []);
@@ -23,9 +23,7 @@ function DashBoard() {
         setFetching(true);
 
         //order fetch
-        const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/order/allorder"
-        );
+        const response = await fetch(Baseurl + "/api/v1/order/allorder");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -33,9 +31,7 @@ function DashBoard() {
         setOrders(data.data);
         setOrdersCount(data.data.length);
         //userfetch
-        const responseuser = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/user/alluser"
-        );
+        const responseuser = await fetch(Baseurl + "/api/v1/user/alluser");
         if (!responseuser.ok) {
           throw new Error(`HTTP error! status: ${responseuser.status}`);
         }

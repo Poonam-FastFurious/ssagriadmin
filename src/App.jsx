@@ -34,6 +34,7 @@ import Termandcondition from "./SiteSetting/Termandcondition";
 import Faq from "./SiteSetting/Faq";
 import Addblogs from "./Blogs/Addblogs";
 import Blogs from "./Blogs/Blogs";
+import Testimonial from "./SiteSetting/Testimonial";
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
             <Route path="/pages-faqs" element={<Faq />} />
             <Route path="/Blogs" element={<Addblogs />} />
             <Route path="/Bloglist" element={<Blogs />} />
+            <Route path="/Testimonial" element={<Testimonial />} />
             <Route
               path="/pages-term-conditions"
               element={<Termandcondition />}
