@@ -17,7 +17,7 @@ function Faq() {
                   <div className="page-title-right">
                     <ol className="breadcrumb m-0">
                       <li className="breadcrumb-item">
-                        <Link to="">SS agri</Link>
+                        <Link to="">SS agriculture</Link>
                       </li>
                       <li className="breadcrumb-item active">FAQ</li>
                     </ol>

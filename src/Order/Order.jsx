@@ -26,9 +26,7 @@ function Order() {
     const fetchProducts = async () => {
       try {
         setFetching(true);
-        const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/order/allorder"
-        );
+        const response = await fetch(Baseurl + "/api/v1/order/allorder");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -64,19 +62,16 @@ function Order() {
   const handleUpdateStatus = async () => {
     if (!selectedOrder) return;
     try {
-      const response = await fetch(
-        "https://ssagriculturebackend.onrender.com/api/v1/order/updateorder",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            orderID: selectedOrder.orderID, // assuming _id is the unique identifier for the order
-            status: newStatus,
-          }),
-        }
-      );
+      const response = await fetch(Baseurl + "/api/v1/order/updateorder", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderID: selectedOrder.orderID, // assuming _id is the unique identifier for the order
+          status: newStatus,
+        }),
+      });
       if (!response.ok) {
         console.log("error");
       }

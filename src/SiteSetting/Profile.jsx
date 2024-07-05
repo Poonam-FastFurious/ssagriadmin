@@ -12,19 +12,16 @@ function Profile() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [editable, setEditable] = useState(false);
-  const adminId = localStorage.getItem("AdminId");
-  const token = localStorage.getItem("token");
+  const adminId = localStorage.getItem("adminId");
+  const token = localStorage.getItem("accessToken");
   const [adminProfile, setAdminProfile] = useState("");
   const fetchAdminProfile = () => {
-    fetch(
-      `https://ssagriculturebackend.onrender.com/api/v1/admin/Profile?adminId=${adminId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    fetch(`${Baseurl}/api/v1/admin/Profile?adminId=${adminId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch admin profile");
@@ -57,25 +54,21 @@ function Profile() {
       return;
     }
 
-    // Reset error and success messages
     setError("");
     setSuccess("");
 
     // API request to change password
-    fetch(
-      "https://ssagriculturebackend.onrender.com/api/v1/admin/change-password",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          oldPassword: oldPassword,
-          newPassword: newPassword,
-        }),
-      }
-    )
+    fetch(Baseurl + "/api/v1/admin/change-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+      }),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to change password");

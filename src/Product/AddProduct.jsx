@@ -510,8 +510,9 @@ function AddProduct() {
                           onChange={(e) => setStatus(e.target.value)}
                           value={status}
                         >
+                          <option>select options</option>
                           <option value="active">active</option>
-                          <option>inactive</option>
+                          <option value="active">inactive</option>
                         </select>
                       </div>
 
@@ -528,8 +529,9 @@ function AddProduct() {
                           onChange={(e) => setVisibility(e.target.value)}
                           value={visibility}
                         >
+                          <option>select options</option>
                           <option value="public">Public</option>
-                          <option>Hidden</option>
+                          <option value="public">Hidden</option>
                         </select>
                       </div>
                     </div>
@@ -551,6 +553,7 @@ function AddProduct() {
                         onChange={(e) => setCategoryName(e.target.value)}
                         value={categoryName}
                       >
+                        <option>select options</option>
                         {data.data.map((cat, index) => (
                           <option key={index} value={cat.title}>
                             {cat.title}

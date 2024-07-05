@@ -10,9 +10,7 @@ function Transaction() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await fetch(
-          "https://ssagriculturebackend.onrender.com/api/v1/payments/"
-        );
+        const response = await fetch(Baseurl + "/api/v1/payments/");
         const data = await response.json();
         if (data.success) {
           setTransactions(data.data);
@@ -185,9 +183,9 @@ function Transaction() {
                         {currentTransactions.map((transaction, index) => (
                           <tr key={index}>
                             <th scope="row">{indexOfFirstItem + index + 1}</th>
-                            <td>user@gmail.com</td>
+                            <td>{transaction.user.email}</td>
                             <td>{transaction.paymentID}</td>
-                            <td>Pending</td>
+                            <td>{transaction.order.status}</td>
                             <td>{transaction.status}</td>
                             <td>{transaction.amount}</td>
                           </tr>

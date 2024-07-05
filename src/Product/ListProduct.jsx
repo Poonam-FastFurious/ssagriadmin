@@ -258,13 +258,13 @@ function ListProduct() {
                                     <td>
                                       <div className="hstack gap-3 flex-wrap">
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#;"
                                           className="link-success fs-15"
                                         >
                                           <i className="ri-edit-2-line"></i>
                                         </Link>
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#;"
                                           className="link-danger fs-15"
                                           onClick={() =>
                                             deleteProduct(product._id)
@@ -352,13 +352,13 @@ function ListProduct() {
                                     <td>
                                       <div className="hstack gap-3 flex-wrap">
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#;"
                                           className="link-success fs-15"
                                         >
                                           <i className="ri-edit-2-line"></i>
                                         </Link>
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#;"
                                           className="link-danger fs-15"
                                           onClick={() =>
                                             deleteProduct(product._id)
@@ -380,7 +380,6 @@ function ListProduct() {
                           id="productnav-draft"
                           role="tabpanel"
                         >
-                          {" "}
                           <div className="table-responsive table-card">
                             <table className="table table-nowrap table-striped-columns mb-0">
                               <thead className="table-light">
@@ -447,13 +446,13 @@ function ListProduct() {
                                     <td>
                                       <div className="hstack gap-3 flex-wrap">
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#;"
                                           className="link-success fs-15"
                                         >
                                           <i className="ri-edit-2-line"></i>
                                         </Link>
                                         <Link
-                                          to="javascript:void(0);"
+                                          to="#"
                                           className="link-danger fs-15"
                                           onClick={() =>
                                             deleteProduct(product._id)
@@ -468,18 +467,6 @@ function ListProduct() {
                               </tbody>
                             </table>
                           </div>
-                          {(inactiveProducts.length === 0) &
-                          (
-                            <div className="py-4 text-center">
-                              <lord-icon
-                                src="../../../msoeawqm.json"
-                                trigger="loop"
-                                colors="primary:#405189,secondary:#0ab39c"
-                                style={{ width: "72px" }}
-                              ></lord-icon>
-                              <h5 className="mt-4">Sorry! No Result Found</h5>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
