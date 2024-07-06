@@ -12,7 +12,7 @@ import ListProduct from "./Product/ListProduct";
 import DashBoard from "./Componnets/DashBoard";
 import AddProduct from "./Product/AddProduct";
 import StockOut from "./Product/StockOut";
-import Review from "./Product/Review";
+// import Review from "./Product/Review";
 import Category from "./Category/Category";
 import AddCategories from "./Category/AddCategories";
 import SubCategories from "./Category/SubCategories";
@@ -35,6 +35,7 @@ import Faq from "./SiteSetting/Faq";
 import Addblogs from "./Blogs/Addblogs";
 import Blogs from "./Blogs/Blogs";
 import Testimonial from "./SiteSetting/Testimonial";
+import EditProduct from "./Product/EditProduct";
 
 function App() {
   return (
@@ -54,9 +55,10 @@ function App() {
             <Route path="/" element={<DashBoard />} />
             <Route path="/Product" element={<ListProduct />} />
             <Route path="/Product/:id" element={<ProductDetail />} />
+            <Route path="/EditProduct/:id" element={<EditProduct />} />
             <Route path="/AddProduct" element={<AddProduct />} />
             <Route path="/Stockout" element={<StockOut />} />
-            <Route path="/review" element={<Review />} />
+
             <Route path="/Categories" element={<Category />} />
             <Route path="/add-category" element={<AddCategories />} />
             <Route path="/add-subcategory" element={<Addsubcategory />} />

@@ -89,17 +89,8 @@ function DashBoard() {
                                   type="button"
                                   className="btn btn-soft-success"
                                 >
-                                  <i className="ri-add-circle-line align-middle me-1"></i>{" "}
-                                  Add Product
-                                </button>
-                              </div>
-
-                              <div className="col-auto">
-                                <button
-                                  type="button"
-                                  className="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn"
-                                >
-                                  <i className="ri-pulse-line"></i>
+                                  <i className="ri-add-circle-line align-middle me-1"></i>
+                                  <Link to="/AddProduct">Add Product</Link>
                                 </button>
                               </div>
                             </div>
@@ -403,7 +394,7 @@ function DashBoard() {
                                   <tr key={order.id}>
                                     <td>
                                       <Link
-                                        to="/apps-ecommerce-order-details"
+                                        to={`/Order/${order._id}`}
                                         className="fw-medium link-primary"
                                       >
                                         #{order.orderID}

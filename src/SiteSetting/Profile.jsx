@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Baseurl } from "../confige";
-
+import avtarimage from "../../src/assets/img/Avtar.jpg";
 /* eslint-disable react/no-unescaped-entities */
 function Profile() {
   const [oldPassword, setOldPassword] = useState("");
@@ -106,13 +106,6 @@ function Profile() {
                         type="file"
                         className="profile-foreground-img-file-input"
                       />
-                      <label
-                        htmlFor="profile-foreground-img-file-input"
-                        className="profile-photo-edit btn btn-light"
-                      >
-                        <i className="ri-image-edit-line align-bottom me-1"></i>
-                        Change Cover
-                      </label>
                     </div>
                   </div>
                 </div>
@@ -121,30 +114,15 @@ function Profile() {
 
             <div className="row">
               <div className="col-xxl-3">
-                <div className="card mt-n5">
+                <div className="card">
                   <div className="card-body p-4">
                     <div className="text-center">
                       <div className="profile-user position-relative d-inline-block mx-auto  mb-4">
                         <img
-                          src={adminProfile.profilePhoto}
+                          src={avtarimage}
                           className="rounded-circle avatar-xl img-thumbnail user-profile-image"
                           alt="user-profile-image"
                         />
-                        <div className="avatar-xs p-0 rounded-circle profile-photo-edit">
-                          <input
-                            id="profile-img-file-input"
-                            type="file"
-                            className="profile-img-file-input"
-                          />
-                          <label
-                            htmlFor="profile-img-file-input"
-                            className="profile-photo-edit avatar-xs"
-                          >
-                            <span className="avatar-title rounded-circle bg-light text-body">
-                              <i className="ri-camera-fill"></i>
-                            </span>
-                          </label>
-                        </div>
                       </div>
                       <h5 className="fs-16 mb-1">{adminProfile.username}</h5>
                     </div>
@@ -183,80 +161,10 @@ function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="card">
-                  <div className="card-body">
-                    <div className="d-flex align-items-center mb-4">
-                      <div className="flex-grow-1">
-                        <h5 className="card-title mb-0">Portfolio</h5>
-                      </div>
-                      <div className="flex-shrink-0">
-                        <Link
-                          to="#"
-                          className="badge bg-light text-primary fs-12"
-                        >
-                          <i className="ri-add-fill align-bottom me-1"></i> Add
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="mb-3 d-flex">
-                      <div className="avatar-xs d-block flex-shrink-0 me-3">
-                        <span className="avatar-title rounded-circle fs-16 bg-body text-body">
-                          <i className="ri-github-fill"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="gitUsername"
-                        value={adminProfile.username}
-                      />
-                    </div>
-                    <div className="mb-3 d-flex">
-                      <div className="avatar-xs d-block flex-shrink-0 me-3">
-                        <span className="avatar-title rounded-circle fs-16 bg-primary">
-                          <i className="ri-global-fill"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="websiteInput"
-                        placeholder="www.example.com"
-                        value={adminProfile.website}
-                      />
-                    </div>
-                    <div className="mb-3 d-flex">
-                      <div className="avatar-xs d-block flex-shrink-0 me-3">
-                        <span className="avatar-title rounded-circle fs-16 bg-success">
-                          <i className="ri-dribbble-fill"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="dribbleName"
-                        placeholder="Username"
-                      />
-                    </div>
-                    <div className="d-flex">
-                      <div className="avatar-xs d-block flex-shrink-0 me-3">
-                        <span className="avatar-title rounded-circle fs-16 bg-danger">
-                          <i className="ri-pinterest-fill"></i>
-                        </span>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="pinterestName"
-                        placeholder="Username"
-                      />
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div className="col-xxl-9">
-                <div className="card mt-xxl-n5">
+                <div className="card ">
                   <div className="card-header">
                     <ul
                       className="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
@@ -604,16 +512,7 @@ function Profile() {
                               </div>
                             </div>
 
-                            <div className="col-lg-12">
-                              <div className="mb-3">
-                                <Link
-                                  to="#"
-                                  className="link-primary text-decoration-underline"
-                                >
-                                  Forgot Password ?
-                                </Link>
-                              </div>
-                            </div>
+                            <div className="col-lg-12"></div>
 
                             <div className="col-lg-12">
                               <div className="text-end">

@@ -258,7 +258,7 @@ function ListProduct() {
                                     <td>
                                       <div className="hstack gap-3 flex-wrap">
                                         <Link
-                                          to="#;"
+                                          to={`/EditProduct/${product._id}`}
                                           className="link-success fs-15"
                                         >
                                           <i className="ri-edit-2-line"></i>

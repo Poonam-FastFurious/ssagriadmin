@@ -12,7 +12,7 @@ function StockOut() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const active = data.data.filter((product) => product.stock == 4);
+        const active = data.data.filter((product) => product.stock <= 999);
 
         setProducts(active);
       } catch (err) {

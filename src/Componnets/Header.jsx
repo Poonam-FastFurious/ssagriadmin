@@ -110,296 +110,15 @@ function Header() {
                 <div
                   className="dropdown-menu dropdown-menu-lg"
                   id="search-dropdown"
-                >
-                  <div data-simplebar="" style={{ maxHeight: "320px" }}>
-                    <div className="dropdown-header">
-                      <h6 className="text-overflow text-muted mb-0 text-uppercase">
-                        Recent Searches
-                      </h6>
-                    </div>
-
-                    <div className="dropdown-item bg-transparent text-wrap">
-                      <Link
-                        to="/"
-                        className="btn btn-soft-secondary btn-sm rounded-pill"
-                      >
-                        how to setup <i className="mdi mdi-magnify ms-1"></i>
-                      </Link>
-                      <Link
-                        to="/"
-                        className="btn btn-soft-secondary btn-sm rounded-pill"
-                      >
-                        buttons <i className="mdi mdi-magnify ms-1"></i>
-                      </Link>
-                    </div>
-
-                    <div className="dropdown-header mt-2">
-                      <h6 className="text-overflow text-muted mb-1 text-uppercase">
-                        Pages
-                      </h6>
-                    </div>
-
-                    <Link to="#" className="dropdown-item notify-item">
-                      <i className="ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
-                      <span>Analytics Dashboard</span>
-                    </Link>
-
-                    <Link to="#" className="dropdown-item notify-item">
-                      <i className="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
-                      <span>Help Center</span>
-                    </Link>
-
-                    <Link to="#" className="dropdown-item notify-item">
-                      <i className="ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
-                      <span>My account settings</span>
-                    </Link>
-
-                    <div className="dropdown-header mt-2">
-                      <h6 className="text-overflow text-muted mb-2 text-uppercase">
-                        Members
-                      </h6>
-                    </div>
-
-                    <div className="notification-list">
-                      <Link to="#" className="dropdown-item notify-item py-2">
-                        <div className="d-flex">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/users/avatar-2.jpg"
-                            className="me-3 rounded-circle avatar-xs"
-                            alt="user-pic"
-                          />
-                          <div className="flex-grow-1">
-                            <h6 className="m-0">Angela Bernier</h6>
-                            <span className="fs-11 mb-0 text-muted">
-                              Manager
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-
-                      <Link to="#" className="dropdown-item notify-item py-2">
-                        <div className="d-flex">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/users/avatar-3.jpg"
-                            className="me-3 rounded-circle avatar-xs"
-                            alt="user-pic"
-                          />
-                          <div className="flex-grow-1">
-                            <h6 className="m-0">David Grasso</h6>
-                            <span className="fs-11 mb-0 text-muted">
-                              Web Designer
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-
-                      <Link to="#" className="dropdown-item notify-item py-2">
-                        <div className="d-flex">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/users/avatar-5.jpg"
-                            className="me-3 rounded-circle avatar-xs"
-                            alt="user-pic"
-                          />
-                          <div className="flex-grow-1">
-                            <h6 className="m-0">Mike Bunch</h6>
-                            <span className="fs-11 mb-0 text-muted">
-                              React Developer
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="text-center pt-3 pb-1">
-                    <Link
-                      to="/pages-search-results"
-                      className="btn btn-primary btn-sm"
-                    >
-                      View All Results
-                      <i className="ri-arrow-right-line ms-1"></i>
-                    </Link>
-                  </div>
-                </div>
+                ></div>
               </form>
             </div>
 
             <div className="d-flex align-items-center">
-              <div className="dropdown d-md-none topbar-head-dropdown header-item">
-                <button
-                  type="button"
-                  className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-                  id="page-header-search-dropdown"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="bx bx-search fs-22"></i>
-                </button>
-                <div
-                  className="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                  aria-labelledby="page-header-search-dropdown"
-                >
-                  <form className="p-3">
-                    <div className="form-group m-0">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Search ..."
-                          aria-label="Recipient's username"
-                        />
-                        <button className="btn btn-primary" type="submit">
-                          <i className="mdi mdi-magnify"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div className="dropdown ms-1 topbar-head-dropdown header-item">
-                <button
-                  type="button"
-                  className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <img
-                    id="header-lang-img"
-                    src="https://themesbrand.com/velzon/html/default/assets/images/flags/us.svg"
-                    alt="Header Language"
-                    height="20"
-                    className="rounded"
-                  />
-                </button>
-                <div className="dropdown-menu dropdown-menu-end">
-                  <Link
-                    to="#"
-                    className="dropdown-item notify-item language py-2"
-                    data-lang="en"
-                    title="English"
-                  >
-                    <img
-                      src="https://themesbrand.com/velzon/html/default/assets/images/flags/us.svg"
-                      alt="user-image"
-                      className="me-2 rounded"
-                      height="18"
-                    />
-                    <span className="align-middle">English</span>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="dropdown topbar-head-dropdown ms-1 header-item">
-                <button
-                  type="button"
-                  className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="bx bx-category-alt fs-22"></i>
-                </button>
-                <div className="dropdown-menu dropdown-menu-lg p-0 dropdown-menu-end">
-                  <div className="p-3 border-top-0 border-start-0 border-end-0 border-dashed border">
-                    <div className="row align-items-center">
-                      <div className="col">
-                        <h6 className="m-0 fw-semibold fs-15"> Web Apps </h6>
-                      </div>
-                      <div className="col-auto">
-                        <Link to="/#!" className="btn btn-sm btn-soft-info">
-                          View All Apps
-                          <i className="ri-arrow-right-s-line align-middle"></i>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-2">
-                    <div className="row g-0">
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/github.png"
-                            alt="Github"
-                          />
-                          <span>GitHub</span>
-                        </Link>
-                      </div>
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/bitbucket.png"
-                            alt="bitbucket"
-                          />
-                          <span>Bitbucket</span>
-                        </Link>
-                      </div>
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/dribbble.png"
-                            alt="dribbble"
-                          />
-                          <span>Dribbble</span>
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="row g-0">
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/dropbox.png"
-                            alt="dropbox"
-                          />
-                          <span>Dropbox</span>
-                        </Link>
-                      </div>
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/mail_chimp.png"
-                            alt="mail_chimp"
-                          />
-                          <span>Mail Chimp</span>
-                        </Link>
-                      </div>
-                      <div className="col">
-                        <Link className="dropdown-icon-item" to="/#!">
-                          <img
-                            src="https://themesbrand.com/velzon/html/default/assets/images/brands/slack.png"
-                            alt="slack"
-                          />
-                          <span>Slack</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div
                 className="dropdown topbar-head-dropdown ms-1 header-item"
                 id="notificationDropdown"
-              >
-                <button
-                  type="button"
-                  className="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
-                  id="page-header-notifications-dropdown"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="bx bx-bell fs-22"></i>
-                  <span className="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">
-                    3<span className="visually-hidden">unread messages</span>
-                  </span>
-                </button>
-              </div>
+              ></div>
 
               <div className="dropdown ms-sm-3 header-item topbar-user">
                 <button
@@ -559,11 +278,6 @@ function Header() {
                         Stock Out Products
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link to="/review" className="nav-link" data-key="t-chat">
-                        Products Reviews
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </li>
@@ -663,12 +377,6 @@ function Header() {
                         Delivery Charge
                       </Link>
                     </li>
-
-                    <li className="nav-item">
-                      <div to="#" className="nav-link">
-                        Payment
-                      </div>
-                    </li>
                   </ul>
                 </div>
               </li>
@@ -745,16 +453,6 @@ function Header() {
                       </Link>
                     </li>
 
-                    <li className="nav-item">
-                      <div to="#" className="nav-link" data-key="t-maintenance">
-                        Maintenance
-                      </div>
-                    </li>
-                    <li className="nav-item">
-                      <div to="#" className="nav-link" data-key="t-coming-soon">
-                        Coming Soon
-                      </div>
-                    </li>
                     <li className="nav-item">
                       <Link
                         to="/Profile"

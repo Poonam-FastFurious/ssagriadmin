@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../Customhooks/useFetch";
 import { Baseurl } from "../confige";
@@ -7,8 +8,21 @@ function Customerlist() {
   const endpoint = Baseurl + "/api/v1/user/alluser";
   const { data, loading, error } = useFetch(endpoint);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredUsers = data.data.filter(
+    (user) =>
+      user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <div className="main-content">
@@ -41,30 +55,6 @@ function Customerlist() {
                           <h5 className="card-title mb-0">Customer List</h5>
                         </div>
                       </div>
-                      <div className="col-sm-auto">
-                        <div className="d-flex flex-wrap align-items-start gap-2">
-                          <button
-                            className="btn btn-soft-danger"
-                            id="remove-actions "
-                          >
-                            <i className="ri-delete-bin-2-line"></i>
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-success add-btn"
-                            data-bs-toggle="modal"
-                            id="create-btn"
-                            data-bs-target="#showModal"
-                          >
-                            <i className="ri-add-line align-bottom me-1"></i>{" "}
-                            Add Customer
-                          </button>
-                          <button type="button" className="btn btn-info">
-                            <i className="ri-file-download-line align-bottom me-1"></i>{" "}
-                            Import
-                          </button>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div className="card-body border-bottom-dashed border-bottom">
@@ -76,6 +66,8 @@ function Customerlist() {
                               type="text"
                               className="form-control search"
                               placeholder="Search for customer, email, phone, status or something..."
+                              value={searchTerm}
+                              onChange={handleSearch}
                             />
                             <i className="ri-search-line search-icon"></i>
                           </div>
@@ -83,20 +75,6 @@ function Customerlist() {
 
                         <div className="col-xl-6">
                           <div className="row g-3">
-                            <div className="col-sm-4">
-                              <div className="">
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  id="datepicker-range"
-                                  data-provider="flatpickr"
-                                  data-date-format="d M, Y"
-                                  data-range-date="true"
-                                  placeholder="Select date"
-                                />
-                              </div>
-                            </div>
-
                             <div className="col-sm-4">
                               <div>
                                 <select
@@ -174,7 +152,7 @@ function Customerlist() {
                             </tr>
                           </thead>
                           <tbody className="list form-check-all">
-                            {data.data.map((user, index) => (
+                            {filteredUsers.map((user, index) => (
                               <tr key={index}>
                                 <th scope="row">
                                   <div className="form-check">
@@ -246,8 +224,8 @@ function Customerlist() {
                             ></lord-icon>
                             <h5 className="mt-2">Sorry! No Result Found</h5>
                             <p className="text-muted mb-0">
-                              We've searched more than 150+ customer We did not
-                              find any customer for you search.
+                              We've searched more than 150+ customers. We did
+                              not find any customers for your search.
                             </p>
                           </div>
                         </div>
@@ -264,179 +242,6 @@ function Customerlist() {
                           <Link className="page-item pagination-next" to="#">
                             Next
                           </Link>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="modal fade"
-                      id="showModal"
-                      tabIndex="-1"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                          <div className="modal-header bg-light p-3">
-                            <h5
-                              className="modal-title"
-                              id="exampleModalLabel"
-                            ></h5>
-                            <button
-                              type="button"
-                              className="btn-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                              id="close-modal"
-                            ></button>
-                          </div>
-                          <form className="tablelist-form" autoComplete="off">
-                            <div className="modal-body">
-                              <input type="hidden" id="id-field" />
-
-                              <div
-                                className="mb-3"
-                                id="modal-id"
-                                style={{ display: "none" }}
-                              >
-                                <label
-                                  htmlFor="id-field1"
-                                  className="form-label"
-                                >
-                                  ID
-                                </label>
-                                <input
-                                  type="text"
-                                  id="id-field1"
-                                  className="form-control"
-                                  placeholder="ID"
-                                  readOnly=""
-                                />
-                              </div>
-
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="customername-field"
-                                  className="form-label"
-                                >
-                                  Customer Name
-                                </label>
-                                <input
-                                  type="text"
-                                  id="customername-field"
-                                  className="form-control"
-                                  placeholder="Enter name"
-                                  required=""
-                                />
-                                <div className="invalid-feedback">
-                                  Please enter a customer name.
-                                </div>
-                              </div>
-
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="email-field"
-                                  className="form-label"
-                                >
-                                  Email
-                                </label>
-                                <input
-                                  type="email"
-                                  id="email-field"
-                                  className="form-control"
-                                  placeholder="Enter email"
-                                  required=""
-                                />
-                                <div className="invalid-feedback">
-                                  Please enter an email.
-                                </div>
-                              </div>
-
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="phone-field"
-                                  className="form-label"
-                                >
-                                  Phone
-                                </label>
-                                <input
-                                  type="text"
-                                  id="phone-field"
-                                  className="form-control"
-                                  placeholder="Enter phone no."
-                                  required=""
-                                />
-                                <div className="invalid-feedback">
-                                  Please enter a phone.
-                                </div>
-                              </div>
-
-                              <div className="mb-3">
-                                <label
-                                  htmlFor="date-field"
-                                  className="form-label"
-                                >
-                                  Joining Date
-                                </label>
-                                <input
-                                  type="date"
-                                  id="date-field"
-                                  className="form-control"
-                                  data-provider="flatpickr"
-                                  data-date-format="d M, Y"
-                                  required=""
-                                  placeholder="Select date"
-                                />
-                                <div className="invalid-feedback">
-                                  Please select a date.
-                                </div>
-                              </div>
-
-                              <div>
-                                <label
-                                  htmlFor="status-field"
-                                  className="form-label"
-                                >
-                                  Status
-                                </label>
-                                <select
-                                  className="form-control"
-                                  data-choices=""
-                                  data-choices-search-false=""
-                                  name="status-field"
-                                  id="status-field"
-                                  required=""
-                                >
-                                  <option value="">Status</option>
-                                  <option value="Active">Active</option>
-                                  <option value="Block">Block</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div className="modal-footer">
-                              <div className="hstack gap-2 justify-content-end">
-                                <button
-                                  type="button"
-                                  className="btn btn-light"
-                                  data-bs-dismiss="modal"
-                                >
-                                  Close
-                                </button>
-                                <button
-                                  type="submit"
-                                  className="btn btn-success"
-                                  id="add-btn"
-                                >
-                                  Add Customer
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-success"
-                                  id="edit-btn"
-                                >
-                                  Update
-                                </button>
-                              </div>
-                            </div>
-                          </form>
                         </div>
                       </div>
                     </div>
