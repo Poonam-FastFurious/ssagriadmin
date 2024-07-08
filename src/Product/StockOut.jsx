@@ -121,11 +121,11 @@ function StockOut() {
                         </td>
                         <td>
                           <div className="hstack gap-3 flex-wrap">
-                            <Link to="#" className="link-success fs-15">
+                            <Link
+                              className="link-success fs-15"
+                              to={`/EditProduct/${product._id}`}
+                            >
                               <i className="ri-edit-2-line"></i>
-                            </Link>
-                            <Link to="#" className="link-danger fs-15">
-                              <i className="ri-delete-bin-line"></i>
                             </Link>
                           </div>
                         </td>

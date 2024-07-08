@@ -5,32 +5,34 @@ import { Baseurl } from "../confige";
 function OrderDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchOrder = async () => {
-      try {
-        const response = await fetch(
-          `${Baseurl}/api/v1/order/singleorder/${id}`
-        );
-        const data = await response.json();
-        setOrder(data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching order:", error);
-        setLoading(false);
-      }
-    };
 
-    fetchOrder();
+  useEffect(() => {
+    fetch(`${Baseurl}/api/v1/order/singleorder/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setOrder(data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching the order data:", error);
+      });
   }, [id]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   if (!order) {
-    return <p>Order not found</p>;
+    return <div>Loading...</div>;
   }
+  const calculateSubtotal = (products) => {
+    return products.reduce(
+      (sum, product) => sum + product.price * product.quantity,
+      0
+    );
+  };
+
+  const subtotal = calculateSubtotal(order.products);
+  const discount =
+    (subtotal * order.products[0].product.discountPercentage) / 100;
+  const shippingCharge = 65.0; // Example value
+  const tax = 44.99; // Example value
+  const total = subtotal - discount + shippingCharge + tax;
   return (
     <>
       <div className="main-content">
@@ -93,8 +95,8 @@ function OrderDetails() {
                                 <div className="d-flex">
                                   <div className="flex-shrink-0 avatar-md bg-light rounded p-1">
                                     <img
-                                      src="https://themesbrand.com/velzon/html/master/assets/images/products/img-8.png"
-                                      alt=""
+                                      src={product.product.image}
+                                      alt={product.product.productTitle}
                                       className="img-fluid d-block"
                                     />
                                   </div>
@@ -104,34 +106,37 @@ function OrderDetails() {
                                         to="apps-ecommerce-product-details"
                                         className="link-primary"
                                       >
-                                        {product.product}
+                                        {product.product.productTitle}
                                       </Link>
                                     </h5>
                                     <p className="text-muted mb-0">
-                                      Color:
-                                      <span className="fw-medium">Pink</span>
-                                    </p>
-                                    <p className="text-muted mb-0">
-                                      Size: <span className="fw-medium">M</span>
+                                      Category:{" "}
+                                      <span className="fw-medium">
+                                        {product.product.category}
+                                      </span>
                                     </p>
                                   </div>
                                 </div>
                               </td>
-                              <td>{product.price}</td>
+                              <td>₹{product.price}</td>
                               <td>{product.quantity}</td>
                               <td>
                                 <div className="text-warning fs-15">
-                                  <i className="ri-star-fill"></i>
-                                  <i className="ri-star-fill"></i>
-                                  <i className="ri-star-fill"></i>
-                                  <i className="ri-star-fill"></i>
-                                  <i className="ri-star-half-fill"></i>
+                                  {[...Array(product.product.rating)].map(
+                                    (_, i) => (
+                                      <i key={i} className="ri-star-fill"></i>
+                                    )
+                                  )}
+                                  {product.product.rating % 1 !== 0 && (
+                                    <i className="ri-star-half-fill"></i>
+                                  )}
                                 </div>
                               </td>
-                              <td className="fw-medium text-end">$239.98</td>
+                              <td className="fw-medium text-end">
+                                ₹{product.price * product.quantity}
+                              </td>
                             </tr>
                           ))}
-
                           <tr className="border-top border-top-dashed">
                             <td colSpan="3"></td>
                             <td colSpan="2" className="fw-medium p-0">
@@ -139,30 +144,43 @@ function OrderDetails() {
                                 <tbody>
                                   <tr>
                                     <td>Sub Total :</td>
-                                    <td className="text-end">$359.96</td>
+                                    <td className="text-end">
+                                      ₹{subtotal.toFixed(2)}
+                                    </td>
                                   </tr>
                                   <tr>
                                     <td>
                                       Discount{" "}
                                       <span className="text-muted">
-                                        (VELZON15)
-                                      </span>{" "}
-                                      : :
+                                        (
+                                        {
+                                          order.products[0].product
+                                            .discountPercentage
+                                        }
+                                        %)
+                                      </span>
+                                      :
                                     </td>
-                                    <td className="text-end">-$53.99</td>
+                                    <td className="text-end">
+                                      -₹{discount.toFixed(2)}
+                                    </td>
                                   </tr>
                                   <tr>
                                     <td>Shipping Charge :</td>
-                                    <td className="text-end">$65.00</td>
+                                    <td className="text-end">
+                                      ₹{shippingCharge.toFixed(2)}
+                                    </td>
                                   </tr>
                                   <tr>
                                     <td>Estimated Tax :</td>
-                                    <td className="text-end">$44.99</td>
+                                    <td className="text-end">
+                                      ₹{tax.toFixed(2)}
+                                    </td>
                                   </tr>
                                   <tr className="border-top border-top-dashed">
                                     <th scope="row">Total:</th>
                                     <th className="text-end">
-                                      {order.totalAmount}
+                                      ₹{total.toFixed(2)}
                                     </th>
                                   </tr>
                                 </tbody>
@@ -443,18 +461,20 @@ function OrderDetails() {
                             />
                           </div>
                           <div className="flex-grow-1 ms-3">
-                            <h6 className="fs-14 mb-1">Joseph Parkers</h6>
+                            <h6 className="fs-14 mb-1">
+                              {order.customer.fullName}
+                            </h6>
                             <p className="text-muted mb-0">Customer</p>
                           </div>
                         </div>
                       </li>
                       <li>
                         <i className="ri-mail-line me-2 align-middle text-muted fs-16"></i>
-                        josephparker@gmail.com
+                        {order.customer.email}
                       </li>
                       <li>
                         <i className="ri-phone-line me-2 align-middle text-muted fs-16"></i>
-                        +(256) 245451 441
+                        {order.customer.mobile}
                       </li>
                     </ul>
                   </div>
@@ -469,11 +489,10 @@ function OrderDetails() {
                   </div>
                   <div className="card-body">
                     <ul className="list-unstyled vstack gap-2 fs-13 mb-0">
-                      <li className="fw-medium fs-14">Joseph Parker</li>
-                      <li>+(256) 245451 451</li>
+                      <li>{order.customer.fullName}</li>
                       <li>{order.shippingInfo.address}</li>
                       <li>
-                        {order.shippingInfo.city} -{" "}
+                        {order.shippingInfo.city} -
                         {order.shippingInfo.postalCode}
                       </li>
                       <li>{order.shippingInfo.country}</li>
@@ -510,9 +529,7 @@ function OrderDetails() {
                         <p className="text-muted mb-0">user Name:</p>
                       </div>
                       <div className="flex-grow-1 ms-2">
-                        <h6 className="mb-0">
-                          {order.shippingInfo.phoneNumber}
-                        </h6>
+                        <h6 className="mb-0">{order.customer.fullName}</h6>
                       </div>
                     </div>
                     <div className="d-flex align-items-center mb-2"></div>

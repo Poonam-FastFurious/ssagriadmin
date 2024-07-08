@@ -144,10 +144,7 @@ function Customerlist() {
                                 Joining Date
                               </th>
                               <th className="sort" data-sort="status">
-                                Status
-                              </th>
-                              <th className="sort" data-sort="action">
-                                Action
+                                Image
                               </th>
                             </tr>
                           </thead>
@@ -173,42 +170,15 @@ function Customerlist() {
                                 <td className="date">06 Apr, 2021</td>
                                 <td className="status">
                                   <span className="badge bg-success-subtle text-success text-uppercase">
-                                    Active
+                                    <img
+                                      src={user.avatar}
+                                      style={{
+                                        maxWidth: "40px",
+                                        maxHeight: "40px",
+                                      }}
+                                      alt=""
+                                    />
                                   </span>
-                                </td>
-                                <td>
-                                  <ul className="list-inline hstack gap-2 mb-0">
-                                    <li
-                                      className="list-inline-item edit"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-trigger="hover"
-                                      data-bs-placement="top"
-                                      title="Edit"
-                                    >
-                                      <Link
-                                        to="#showModal"
-                                        data-bs-toggle="modal"
-                                        className="text-primary d-inline-block edit-item-btn"
-                                      >
-                                        <i className="ri-pencil-fill fs-16"></i>
-                                      </Link>
-                                    </li>
-                                    <li
-                                      className="list-inline-item"
-                                      data-bs-toggle="tooltip"
-                                      data-bs-trigger="hover"
-                                      data-bs-placement="top"
-                                      title="Remove"
-                                    >
-                                      <Link
-                                        className="text-danger d-inline-block remove-item-btn"
-                                        data-bs-toggle="modal"
-                                        to="#deleteRecordModal"
-                                      >
-                                        <i className="ri-delete-bin-5-fill fs-16"></i>
-                                      </Link>
-                                    </li>
-                                  </ul>
                                 </td>
                               </tr>
                             ))}
@@ -242,59 +212,6 @@ function Customerlist() {
                           <Link className="page-item pagination-next" to="#">
                             Next
                           </Link>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      className="modal fade zoomIn"
-                      id="deleteRecordModal"
-                      tabIndex="-1"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <button
-                              type="button"
-                              className="btn-close"
-                              id="deleteRecord-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                            ></button>
-                          </div>
-                          <div className="modal-body">
-                            <div className="mt-2 text-center">
-                              <lord-icon
-                                src="../../../gsqxdxog.json"
-                                trigger="loop"
-                                colors="primary:#f7b84b,secondary:#f06548"
-                                style={{ width: "100px", height: "100px" }}
-                              ></lord-icon>
-                              <div className="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                <h4>Are you sure ?</h4>
-                                <p className="text-muted mx-4 mb-0">
-                                  Are you sure you want to remove this record ?
-                                </p>
-                              </div>
-                            </div>
-                            <div className="d-flex gap-2 justify-content-center mt-4 mb-2">
-                              <button
-                                type="button"
-                                className="btn w-sm btn-light"
-                                data-bs-dismiss="modal"
-                              >
-                                Close
-                              </button>
-                              <button
-                                type="button"
-                                className="btn w-sm btn-danger"
-                                id="delete-record"
-                              >
-                                Yes, Delete It!
-                              </button>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>

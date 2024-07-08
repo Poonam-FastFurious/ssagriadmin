@@ -149,10 +149,6 @@ function Order() {
                       </div>
                       <div className="col-sm-auto">
                         <div className="d-flex gap-1 flex-wrap">
-                          <button type="button" className="btn btn-info">
-                            <i className="ri-file-download-line align-bottom me-1"></i>
-                            Import
-                          </button>
                           <button
                             className="btn btn-soft-danger"
                             id="remove-actions"
@@ -362,7 +358,7 @@ function Order() {
                                 </tr>
                               </thead>
                               <tbody className="list form-check-all">
-                                {currentItems.map((order, index) => (
+                                {currentItems.reverse().map((order, index) => (
                                   <tr key={index}>
                                     <th scope="row">
                                       <div className="form-check">
