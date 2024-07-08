@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Baseurl } from "../confige";
+import { Link } from "react-router-dom";
 
 const Blogs = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -36,40 +37,99 @@ const Blogs = () => {
   return (
     <div className="main-content">
       <div className="page-content">
-        <div className="row">
-          <div className="col-12">
-            <div className="justify-content-between d-flex align-items-center mt-3 mb-4">
-              <h5 className="mb-0 pb-1 text-decoration-underline">Blog list</h5>
-            </div>
-            <div className="row">
-              {blogPosts.map((blogPost) => (
-                <div key={blogPost._id} className="col-xxl-6 mb-4">
-                  <div className="card">
-                    <div className="row g-0">
-                      <div className="col-md-4">
-                        <img
-                          className="rounded-start img-fluid h-100 object-fit-cover"
-                          src={blogPost.thumbnail}
-                          alt="Card image"
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <div className="card-header">
-                          <h5 className="card-title mb-0">{blogPost.title}</h5>
-                        </div>
-                        <div className="card-body">
-                          <p className="card-text mb-2">{blogPost.content}</p>
-                          <p className="card-text">
-                            <small className="text-muted">
-                              Last updated 3 mins ago
-                            </small>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12">
+              <div className="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 className="mb-sm-0">Stock Out Products </h4>
+
+                <div className="page-title-right">
+                  <ol className="breadcrumb m-0">
+                    <li className="breadcrumb-item">
+                      <Link to="#">SSAgriculture</Link>
+                    </li>
+                    <li className="breadcrumb-item active">Blogs List </li>
+                  </ol>
                 </div>
-              ))}
+              </div>
+            </div>
+          </div>
+          <div className="tab-pane active" id="productnav-all" role="tabpanel">
+            <div className="table-responsive table-card">
+              <table
+                className="table table-nowrap table-striped-columns mb-0"
+                style={{ backgroundColor: "white" }}
+              >
+                <thead className="table-light">
+                  <tr>
+                    <th scope="col">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="cardtableCheck"
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="cardtableCheck"
+                        ></label>
+                      </div>
+                    </th>
+                    <th scope="col">content</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">author</th>
+                    <th scope="col">gallery</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {blogPosts.map((post, index) => (
+                    <tr key={index}>
+                      <td>
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id={`cardtableCheck${index}`}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={`cardtableCheck${index}`}
+                          ></label>
+                        </div>
+                      </td>
+                      <td>
+                        <div
+                          dangerouslySetInnerHTML={{ __html: post.content }}
+                        />
+                      </td>
+                      <td>{post.title}</td>
+                      <td>
+                        <img
+                          src={post.thumbnail}
+                          alt={post.title}
+                          style={{ width: "100px" }}
+                        />
+                      </td>
+                      <td>{post.author}</td>
+                      <td>
+                        <div className="gallery">
+                          {post.gallery.map((image, idx) => (
+                            <img
+                              key={idx}
+                              src={image}
+                              alt={`Gallery Image ${idx}`}
+                              style={{ width: "50px", marginRight: "5px" }}
+                            />
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../Banner/Loader.css";
 import { Baseurl } from "../confige";
-
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 function Addblogs() {
   const [thumbnail, setThumbnail] = useState(null);
   const [gallery, setGallery] = useState([]);
@@ -275,14 +276,14 @@ function Addblogs() {
                 <label htmlFor="content" className="form-label">
                   Content
                 </label>
-                <textarea
-                  className="form-control"
-                  id="content"
-                  rows="8"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  required
-                ></textarea>
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={content}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setContent(data);
+                  }}
+                />
               </div>
 
               <div className="mb-3">

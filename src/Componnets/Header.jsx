@@ -151,33 +151,22 @@ function Header() {
                     <i className="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
                     <span className="align-middle">Profile</span>
                   </Link>
-                  <Link className="dropdown-item" to="/Chat">
-                    <i className="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
-                    <span className="align-middle">Messages</span>
-                  </Link>
 
-                  <Link className="dropdown-item" to="/pages-faqs">
-                    <i className="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>
-                    <span className="align-middle">Help</span>
-                  </Link>
                   <div className="dropdown-divider"></div>
-                  <Link className="dropdown-item" to="/pages-profile">
+                  <Link className="dropdown-item" to="#">
                     <i className="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
                     <span className="align-middle">
-                      Balance : <b>$5971.67</b>
+                      Balance : <b>5971.67</b>
                     </span>
                   </Link>
-                  <Link className="dropdown-item" to="/pages-profile-settings">
+                  <Link className="dropdown-item" to="/Profile">
                     <span className="badge bg-success-subtle text-success mt-1 float-end">
                       New
                     </span>
                     <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
                     <span className="align-middle">Settings</span>
                   </Link>
-                  <Link className="dropdown-item" to="/auth-lockscreen-basic">
-                    <i className="mdi mdi-lock text-muted fs-16 align-middle me-1"></i>
-                    <span className="align-middle">Lock screen</span>
-                  </Link>
+
                   <Link className="dropdown-item" onClick={logout}>
                     <i className="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                     <span className="align-middle" data-key="t-logout">
